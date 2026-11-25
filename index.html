@@ -49,10 +49,6 @@
     font-weight: 700;
     letter-spacing: 0.02em;
   }
-  header .sub {
-    font-size: 0.78rem;
-    color: #cbd5e1;
-  }
   nav {
     display: flex;
     gap: 6px;
@@ -99,6 +95,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    flex-wrap: wrap;
   }
 
   .grid-4 {
@@ -134,7 +131,7 @@
     flex-wrap: wrap;
     gap: 10px;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   select, input[type="text"], input[type="number"], input[type="date"] {
     padding: 7px 10px;
@@ -206,6 +203,22 @@
     font-size: 0.8rem;
     position: sticky;
     top: 0;
+    z-index: 2;
+  }
+  th.sortable {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  th.sortable:hover {
+    background: #eef2ff;
+    color: #1e3a8a;
+  }
+  .sort-ind {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 0.72rem;
+    color: #1e3a8a;
   }
   tr:hover td { background: #f8fafc; }
   .num { text-align: right; font-variant-numeric: tabular-nums; }
@@ -222,6 +235,38 @@
   .badge-fix { background: #ccfbf1; color: #115e59; }
   .badge-inv { background: #fef3c7; color: #92400e; }
   .badge-unmatched { background: #fee2e2; color: #991b1b; }
+
+  .filter-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 10px;
+    background: #f8fafc;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  .filter-group label {
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .filter-group input,
+  .filter-group select {
+    width: 100%;
+    font-size: 0.84rem;
+    padding: 6px 8px;
+  }
+  .amt-range {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .amt-range input {
+    width: 50%;
+  }
 
   /* Chart visualization */
   .chart-wrap {
@@ -340,7 +385,6 @@
 <header>
   <div>
     <h1>パーソナル家計簿・支出管理アプリ</h1>
-    <div class="sub">ER設計準拠（支出データ / 支出科目マスタ / 支払手段マスタ / 自動分類・名寄せルール）</div>
   </div>
   <nav id="mainNav">
     <button class="active" data-tab="analytics">分析ビュー</button>
@@ -364,8 +408,8 @@
         <select id="filterYear"></select>
         <select id="filterMonth"></select>
         <label style="font-size:0.84rem; display:inline-flex; align-items:center; gap:5px; margin-left:8px;">
-          <input type="checkbox" id="excludeInvest" />
-          投資・積立を除外して集計
+          <input type="checkbox" id="excludeSpecial" />
+          特別な支出・その他を除外して集計
         </label>
         <div style="margin-left:auto; display:flex; align-items:center; gap:8px;">
           <span style="font-size:0.82rem; color:var(--muted);">グラフ形式:</span>
@@ -427,27 +471,60 @@
   <section id="tab-expenses" class="tab-panel">
     <div class="card">
       <h2>
-        <span>支出データ一覧（直接インライン編集対応）</span>
-        <span style="font-size:0.8rem; font-weight:normal; color:var(--muted);">※「編集」ボタンまたは行ダブルクリックで直接修正できます</span>
+        <span>支出データ一覧</span>
+        <span style="font-size:0.8rem; font-weight:normal; color:var(--muted);">※列見出しクリックで並べ替え、「編集」ボタンまたは行ダブルクリックで直接修正</span>
       </h2>
-      <div class="controls">
-        <input type="text" id="expSearch" placeholder="摘要・元表記で検索..." style="min-width:200px;" />
-        <select id="expFilterCat"><option value="">すべての支出科目</option></select>
-        <select id="expFilterPm"><option value="">すべての支払手段</option></select>
-        <select id="expFilterYm"><option value="">すべての年月</option></select>
-        <button class="btn btn-danger btn-sm" id="bulkDeleteBtn" style="margin-left:auto;">選択行を削除</button>
+
+      <!-- 5項目フィルタバー（支出日・支出科目・摘要・支払手段・金額） -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>支出日（開始日）</label>
+          <input type="date" id="expFilterDateFrom" />
+        </div>
+        <div class="filter-group">
+          <label>支出日（終了日）</label>
+          <input type="date" id="expFilterDateTo" />
+        </div>
+        <div class="filter-group">
+          <label>支出科目</label>
+          <select id="expFilterCat"><option value="">すべて</option></select>
+        </div>
+        <div class="filter-group">
+          <label>摘要（キーワード）</label>
+          <input type="text" id="expSearch" placeholder="店名・内容で絞り込み..." />
+        </div>
+        <div class="filter-group">
+          <label>支払手段</label>
+          <select id="expFilterPm"><option value="">すべて</option></select>
+        </div>
+        <div class="filter-group">
+          <label>金額範囲（円）</label>
+          <div class="amt-range">
+            <input type="number" id="expFilterAmtMin" placeholder="最小" />
+            <span style="color:var(--muted);">〜</span>
+            <input type="number" id="expFilterAmtMax" placeholder="最大" />
+          </div>
+        </div>
       </div>
-      <div id="expListMeta" style="font-size:0.82rem; color:var(--muted); margin-bottom:8px;"></div>
+
+      <div class="controls">
+        <div id="expListMeta" style="font-size:0.84rem; font-weight:600; color:#1e293b;"></div>
+        <div style="margin-left:auto; display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" id="clearExpFiltersBtn">フィルタ解除</button>
+          <button class="btn btn-danger btn-sm" id="bulkDeleteBtn">選択行を削除</button>
+        </div>
+      </div>
+
       <div class="table-scroll">
         <table id="expensesTable">
           <thead>
             <tr>
               <th style="width:32px;"><input type="checkbox" id="selectAllExp" /></th>
-              <th style="width:120px;">支出日</th>
-              <th style="width:155px;">支出科目</th>
-              <th>摘要（支出先）</th>
-              <th style="width:170px;">支払手段</th>
-              <th class="num" style="width:110px;">金額</th>
+              <th class="sortable" data-sort="date" style="width:125px;">支出日<span class="sort-ind" id="sort-ind-date">▼</span></th>
+              <th class="sortable" data-sort="category" style="width:155px;">支出科目<span class="sort-ind" id="sort-ind-category"></span></th>
+              <th class="sortable" data-sort="description">摘要（支出先）<span class="sort-ind" id="sort-ind-description"></span></th>
+              <th class="sortable" data-sort="paymentMethod" style="width:175px;">支払手段<span class="sort-ind" id="sort-ind-paymentMethod"></span></th>
+              <th class="sortable num" data-sort="amount" style="width:115px;">金額<span class="sort-ind" id="sort-ind-amount"></span></th>
               <th style="width:120px;">操作</th>
             </tr>
           </thead>
@@ -540,18 +617,18 @@
   <section id="tab-masters" class="tab-panel">
     <div class="grid-2">
       <div class="card">
-        <h2>支出科目マスタ（CATEGORIES）</h2>
+        <h2>支出科目マスタ（マネーフォワード標準準拠）</h2>
         <form id="addCategoryForm" class="controls">
-          <input type="text" id="newCatName" placeholder="新しい科目名（例：交際費）" required />
+          <input type="text" id="newCatName" placeholder="新しい科目名" required />
           <select id="newCatType">
             <option value="変動費">変動費</option>
             <option value="固定費">固定費</option>
             <option value="特別支出">特別支出</option>
-            <option value="資産形成">資産形成</option>
+            <option value="振替・カード">振替・カード</option>
           </select>
           <button type="submit" class="btn btn-primary btn-sm">科目追加</button>
         </form>
-        <div class="table-scroll" style="max-height:300px;">
+        <div class="table-scroll" style="max-height:320px;">
           <table id="categoriesMasterTable">
             <thead><tr><th>科目名</th><th>費用区分</th><th class="num">登録明細数</th></tr></thead>
             <tbody></tbody>
@@ -560,7 +637,7 @@
       </div>
 
       <div class="card">
-        <h2>支払手段マスタ（PAYMENT_METHODS）</h2>
+        <h2>支払手段マスタ</h2>
         <form id="addPmForm" class="controls">
           <input type="text" id="newPmName" placeholder="新しい支払手段（例：Oliveゴールド）" required />
           <select id="newPmType">
@@ -571,7 +648,7 @@
           </select>
           <button type="submit" class="btn btn-primary btn-sm">手段追加</button>
         </form>
-        <div class="table-scroll" style="max-height:300px;">
+        <div class="table-scroll" style="max-height:320px;">
           <table id="pmMasterTable">
             <thead><tr><th>支払手段名</th><th>種別</th><th class="num">登録明細数</th></tr></thead>
             <tbody></tbody>
@@ -582,7 +659,7 @@
 
     <div class="card">
       <h2>
-        <span>科目自動判定ルール（CATEGORY_RULES）</span>
+        <span>科目自動判定ルール</span>
         <button class="btn btn-outline btn-sm" id="reapplyRulesBtn">未分類明細にルールを再適用</button>
       </h2>
       <form id="addRuleForm" class="controls">
@@ -601,7 +678,7 @@
 
     <div class="card">
       <h2>
-        <span>店名表記ゆれ統一ルール（STORE_ALIASES）</span>
+        <span>店名表記ゆれ統一ルール</span>
         <button class="btn btn-outline btn-sm" id="reapplyAliasesBtn">既存データに名寄せを一括適用</button>
       </h2>
       <form id="addAliasForm" class="controls">
@@ -635,13 +712,14 @@
 <div id="toast" class="toast"></div>
 
 <script>
-const EMBEDDED_SEED = {"paymentMethods":[{"id":"pm_1","name":"EPOS","type":"クレジットカード"},{"id":"pm_2","name":"ANA VISA SFCゴールド","type":"クレジットカード"},{"id":"pm_3","name":"ビューゴールド","type":"クレジットカード"},{"id":"pm_4","name":"ビックカメラSuica","type":"クレジットカード"},{"id":"pm_5","name":"PayPayカード","type":"クレジットカード"},{"id":"pm_6","name":"ANA Pay","type":"QR・プリペイド"},{"id":"pm_7","name":"現金","type":"現金"}],"categories":[{"id":"cat_1","name":"食費（内食）","costType":"変動費"},{"id":"cat_2","name":"食費（外食）","costType":"変動費"},{"id":"cat_3","name":"日用品","costType":"変動費"},{"id":"cat_4","name":"交通費","costType":"変動費"},{"id":"cat_5","name":"水道・光熱費","costType":"固定費"},{"id":"cat_6","name":"通信費","costType":"固定費"},{"id":"cat_7","name":"サブスク・アプリ","costType":"固定費"},{"id":"cat_8","name":"自己投資・学習","costType":"固定費"},{"id":"cat_9","name":"医療費","costType":"変動費"},{"id":"cat_10","name":"書籍・教養","costType":"変動費"},{"id":"cat_11","name":"趣味・娯楽","costType":"変動費"},{"id":"cat_12","name":"美容・被服","costType":"変動費"},{"id":"cat_13","name":"投資・積立","costType":"資産形成"},{"id":"cat_14","name":"ふるさと納税","costType":"特別支出"},{"id":"cat_15","name":"未分類","costType":"変動費"}],"categoryRules":[{"id":"rule_1","priority":1,"keyword":"ファミペイ","categoryId":"cat_1"},{"id":"rule_2","priority":2,"keyword":"ANA PAY","categoryId":"cat_2"},{"id":"rule_3","priority":3,"keyword":"SBI証券","categoryId":"cat_13"},{"id":"rule_4","priority":4,"keyword":"さとふる","categoryId":"cat_14"},{"id":"rule_5","priority":5,"keyword":"キリシマシ","categoryId":"cat_14"},{"id":"rule_6","priority":6,"keyword":"ダイセンシ","categoryId":"cat_14"},{"id":"rule_7","priority":7,"keyword":"ENEOSPOWER","categoryId":"cat_5"},{"id":"rule_8","priority":8,"keyword":"コスモでんき","categoryId":"cat_5"},{"id":"rule_9","priority":9,"keyword":"東京都水道局","categoryId":"cat_5"},{"id":"rule_10","priority":10,"keyword":"POVO","categoryId":"cat_6"},{"id":"rule_11","priority":11,"keyword":"ポヴォゴリヨウリョウキン","categoryId":"cat_6"},{"id":"rule_12","priority":12,"keyword":"ドコモ","categoryId":"cat_6"},{"id":"rule_13","priority":13,"keyword":"APPLE COM","categoryId":"cat_7"},{"id":"rule_14","priority":14,"keyword":"ラジコ","categoryId":"cat_7"},{"id":"rule_15","priority":15,"keyword":"日経ID","categoryId":"cat_7"},{"id":"rule_16","priority":16,"keyword":"ファンティア","categoryId":"cat_7"},{"id":"rule_17","priority":17,"keyword":"ファンクラブ","categoryId":"cat_7"},{"id":"rule_18","priority":18,"keyword":"AMAZONプライム","categoryId":"cat_7"},{"id":"rule_19","priority":19,"keyword":"クリニック","categoryId":"cat_9"},{"id":"rule_20","priority":20,"keyword":"デンタル","categoryId":"cat_9"},{"id":"rule_21","priority":21,"keyword":"セイコツイン","categoryId":"cat_9"},{"id":"rule_22","priority":22,"keyword":"笑顔道","categoryId":"cat_9"},{"id":"rule_23","priority":23,"keyword":"スギヤツキヨク","categoryId":"cat_1"},{"id":"rule_24","priority":24,"keyword":"スギ薬局","categoryId":"cat_1"},{"id":"rule_25","priority":25,"keyword":"トモズ","categoryId":"cat_1"},{"id":"rule_26","priority":26,"keyword":"ファミリーマート","categoryId":"cat_1"},{"id":"rule_27","priority":27,"keyword":"ローソン","categoryId":"cat_1"},{"id":"rule_28","priority":28,"keyword":"セブン-イレブン","categoryId":"cat_1"},{"id":"rule_29","priority":29,"keyword":"セブンイレブン","categoryId":"cat_1"},{"id":"rule_30","priority":30,"keyword":"デイリーヤマザキ","categoryId":"cat_1"},{"id":"rule_31","priority":31,"keyword":"MYB","categoryId":"cat_1"},{"id":"rule_32","priority":32,"keyword":"まいばすけっと","categoryId":"cat_1"},{"id":"rule_33","priority":33,"keyword":"サミット","categoryId":"cat_1"},{"id":"rule_34","priority":34,"keyword":"成城石井","categoryId":"cat_1"},{"id":"rule_35","priority":35,"keyword":"イトク","categoryId":"cat_1"},{"id":"rule_36","priority":36,"keyword":"スターバックス","categoryId":"cat_2"},{"id":"rule_37","priority":37,"keyword":"マクドナルド","categoryId":"cat_2"},{"id":"rule_38","priority":38,"keyword":"ミドリショクドウ","categoryId":"cat_2"},{"id":"rule_39","priority":39,"keyword":"ハナマル","categoryId":"cat_2"},{"id":"rule_40","priority":40,"keyword":"ヤヨイケン","categoryId":"cat_2"},{"id":"rule_41","priority":41,"keyword":"スシロー","categoryId":"cat_2"},{"id":"rule_42","priority":42,"keyword":"なか卯","categoryId":"cat_2"},{"id":"rule_43","priority":43,"keyword":"ヨシノヤ","categoryId":"cat_2"},{"id":"rule_44","priority":44,"keyword":"ペッパーランチ","categoryId":"cat_2"},{"id":"rule_45","priority":45,"keyword":"壱角家","categoryId":"cat_2"},{"id":"rule_46","priority":46,"keyword":"イチカクヤ","categoryId":"cat_2"},{"id":"rule_47","priority":47,"keyword":"ゴンチャ","categoryId":"cat_2"},{"id":"rule_48","priority":48,"keyword":"ミスタードーナツ","categoryId":"cat_2"},{"id":"rule_49","priority":49,"keyword":"ベーカリー","categoryId":"cat_2"},{"id":"rule_50","priority":50,"keyword":"三田製麺所","categoryId":"cat_2"},{"id":"rule_51","priority":51,"keyword":"松屋","categoryId":"cat_2"},{"id":"rule_52","priority":52,"keyword":"ジャパンビバレッジ","categoryId":"cat_2"},{"id":"rule_53","priority":53,"keyword":"飲料自販機","categoryId":"cat_2"},{"id":"rule_54","priority":54,"keyword":"コカ・コーラ","categoryId":"cat_2"},{"id":"rule_55","priority":55,"keyword":"キリン","categoryId":"cat_2"},{"id":"rule_56","priority":56,"keyword":"ダイドードリンコ","categoryId":"cat_2"},{"id":"rule_57","priority":57,"keyword":"ダイソー","categoryId":"cat_3"},{"id":"rule_58","priority":58,"keyword":"無印良品","categoryId":"cat_3"},{"id":"rule_59","priority":59,"keyword":"ムジルシリヨウヒン","categoryId":"cat_3"},{"id":"rule_60","priority":60,"keyword":"ハンズ","categoryId":"cat_3"},{"id":"rule_61","priority":61,"keyword":"ロフト","categoryId":"cat_3"},{"id":"rule_62","priority":62,"keyword":"ランドリー","categoryId":"cat_3"},{"id":"rule_63","priority":63,"keyword":"ビックカメラ","categoryId":"cat_3"},{"id":"rule_64","priority":64,"keyword":"ETC","categoryId":"cat_4"},{"id":"rule_65","priority":65,"keyword":"GOアプリ","categoryId":"cat_4"},{"id":"rule_66","priority":66,"keyword":"リムジン","categoryId":"cat_4"},{"id":"rule_67","priority":67,"keyword":"タッチ決済","categoryId":"cat_4"},{"id":"rule_68","priority":68,"keyword":"えきねっと","categoryId":"cat_4"},{"id":"rule_69","priority":69,"keyword":"スマートEX","categoryId":"cat_4"},{"id":"rule_70","priority":70,"keyword":"モバイルSUICA","categoryId":"cat_4"},{"id":"rule_71","priority":71,"keyword":"オートチャージ","categoryId":"cat_4"},{"id":"rule_72","priority":72,"keyword":"キヨスク","categoryId":"cat_4"},{"id":"rule_73","priority":73,"keyword":"NEWDAYS","categoryId":"cat_4"},{"id":"rule_74","priority":74,"keyword":"ANA WEB","categoryId":"cat_4"},{"id":"rule_75","priority":75,"keyword":"ATAC TAP&GO","categoryId":"cat_4"},{"id":"rule_76","priority":76,"keyword":"ENEOS-SS","categoryId":"cat_4"},{"id":"rule_77","priority":77,"keyword":"GABA","categoryId":"cat_8"},{"id":"rule_78","priority":78,"keyword":"ノアダンスアカデミー","categoryId":"cat_8"},{"id":"rule_79","priority":79,"keyword":"ブックファースト","categoryId":"cat_10"},{"id":"rule_80","priority":80,"keyword":"ブツクファースト","categoryId":"cat_10"},{"id":"rule_81","priority":81,"keyword":"紀伊國屋","categoryId":"cat_10"},{"id":"rule_82","priority":82,"keyword":"COCORO BOOKS","categoryId":"cat_10"},{"id":"rule_83","priority":83,"keyword":"宝くじ","categoryId":"cat_11"},{"id":"rule_84","priority":84,"keyword":"スポーツ振興くじ","categoryId":"cat_11"},{"id":"rule_85","priority":85,"keyword":"TOTO","categoryId":"cat_11"},{"id":"rule_86","priority":86,"keyword":"チケットぴあ","categoryId":"cat_11"},{"id":"rule_87","priority":87,"keyword":"アミューズメント","categoryId":"cat_11"},{"id":"rule_88","priority":88,"keyword":"STEAM","categoryId":"cat_11"},{"id":"rule_89","priority":89,"keyword":"タイトー","categoryId":"cat_11"},{"id":"rule_90","priority":90,"keyword":"AMAZON DOWNLOADS","categoryId":"cat_11"},{"id":"rule_91","priority":91,"keyword":"ヘアメイク","categoryId":"cat_12"},{"id":"rule_92","priority":92,"keyword":"ユニクロ","categoryId":"cat_12"},{"id":"rule_93","priority":93,"keyword":"スーツセレクト","categoryId":"cat_12"},{"id":"rule_94","priority":94,"keyword":"伊勢丹","categoryId":"cat_12"},{"id":"rule_95","priority":95,"keyword":"高島屋","categoryId":"cat_12"}],"storeAliases":[{"id":"alias_1","pattern":"ファミリーマート","canonicalName":"ファミリーマート"},{"id":"alias_2","pattern":"フアミリ－マ－ト","canonicalName":"ファミリーマート"},{"id":"alias_3","pattern":"ﾌｱﾐﾘ-ﾏ-ﾄ","canonicalName":"ファミリーマート"},{"id":"alias_4","pattern":"ローソン","canonicalName":"ローソン"},{"id":"alias_5","pattern":"ロ－ソン","canonicalName":"ローソン"},{"id":"alias_6","pattern":"セブン－イレブン","canonicalName":"セブン-イレブン"},{"id":"alias_7","pattern":"セブンイレブン","canonicalName":"セブン-イレブン"},{"id":"alias_8","pattern":"スギ薬局","canonicalName":"スギ薬局"},{"id":"alias_9","pattern":"スギヤツキヨク","canonicalName":"スギ薬局"},{"id":"alias_10","pattern":"ＦａｍｉＰａｙチャージ","canonicalName":"ファミペイチャージ"},{"id":"alias_11","pattern":"ＡＮＡ　Ｐａｙ","canonicalName":"ANA Pay"},{"id":"alias_12","pattern":"ポヴォゴリヨウリョウキン","canonicalName":"povoご利用料金"},{"id":"alias_13","pattern":"ｐｏｖｏご利用料金","canonicalName":"povoご利用料金"},{"id":"alias_14","pattern":"無印良品","canonicalName":"無印良品"},{"id":"alias_15","pattern":"ムジルシリヨウヒン","canonicalName":"無印良品"}],"expenses":[]};
-const STORAGE_KEY = "personal_kakeibo_er_app_clean_v1";
+const EMBEDDED_SEED = {"paymentMethods":[{"id":"pm_1","name":"EPOS","type":"クレジットカード"},{"id":"pm_2","name":"ANA VISA SFCゴールド","type":"クレジットカード"},{"id":"pm_3","name":"ビューゴールド","type":"クレジットカード"},{"id":"pm_4","name":"ビックカメラSuica","type":"クレジットカード"},{"id":"pm_5","name":"PayPayカード","type":"クレジットカード"},{"id":"pm_6","name":"ANA Pay","type":"QR・プリペイド"},{"id":"pm_7","name":"現金","type":"現金"}],"categories":[{"id":"cat_1","name":"食費","costType":"変動費"},{"id":"cat_2","name":"日用品","costType":"変動費"},{"id":"cat_3","name":"趣味・娯楽","costType":"変動費"},{"id":"cat_4","name":"交際費","costType":"変動費"},{"id":"cat_5","name":"交通費","costType":"変動費"},{"id":"cat_6","name":"衣服・美容","costType":"変動費"},{"id":"cat_7","name":"健康・医療","costType":"変動費"},{"id":"cat_8","name":"自動車","costType":"変動費"},{"id":"cat_9","name":"教養・教育","costType":"固定費"},{"id":"cat_10","name":"特別な支出","costType":"特別支出"},{"id":"cat_11","name":"現金・カード","costType":"振替・カード"},{"id":"cat_12","name":"水道・光熱費","costType":"固定費"},{"id":"cat_13","name":"通信費","costType":"固定費"},{"id":"cat_14","name":"住宅","costType":"固定費"},{"id":"cat_15","name":"税・社会保障","costType":"特別支出"},{"id":"cat_16","name":"保険","costType":"固定費"},{"id":"cat_17","name":"その他","costType":"変動費"},{"id":"cat_18","name":"未分類","costType":"変動費"}],"categoryRules":[{"id":"rule_1","priority":1,"keyword":"ファミペイ","categoryId":"cat_1"},{"id":"rule_2","priority":2,"keyword":"ANA PAY","categoryId":"cat_1"},{"id":"rule_3","priority":3,"keyword":"SBI証券","categoryId":"cat_17"},{"id":"rule_4","priority":4,"keyword":"さとふる","categoryId":"cat_15"},{"id":"rule_5","priority":5,"keyword":"キリシマシ","categoryId":"cat_15"},{"id":"rule_6","priority":6,"keyword":"ダイセンシ","categoryId":"cat_15"},{"id":"rule_7","priority":7,"keyword":"ENEOSPOWER","categoryId":"cat_12"},{"id":"rule_8","priority":8,"keyword":"コスモでんき","categoryId":"cat_12"},{"id":"rule_9","priority":9,"keyword":"東京都水道局","categoryId":"cat_12"},{"id":"rule_10","priority":10,"keyword":"POVO","categoryId":"cat_13"},{"id":"rule_11","priority":11,"keyword":"ポヴォゴリヨウリョウキン","categoryId":"cat_13"},{"id":"rule_12","priority":12,"keyword":"ドコモ","categoryId":"cat_13"},{"id":"rule_13","priority":13,"keyword":"J:COM","categoryId":"cat_13"},{"id":"rule_14","priority":14,"keyword":"GOOGLE ONE","categoryId":"cat_13"},{"id":"rule_15","priority":15,"keyword":"APPLE COM","categoryId":"cat_3"},{"id":"rule_16","priority":16,"keyword":"ラジコ","categoryId":"cat_3"},{"id":"rule_17","priority":17,"keyword":"日経ID","categoryId":"cat_9"},{"id":"rule_18","priority":18,"keyword":"ファンティア","categoryId":"cat_3"},{"id":"rule_19","priority":19,"keyword":"ファンクラブ","categoryId":"cat_3"},{"id":"rule_20","priority":20,"keyword":"AMAZONプライム","categoryId":"cat_3"},{"id":"rule_21","priority":21,"keyword":"クリニック","categoryId":"cat_7"},{"id":"rule_22","priority":22,"keyword":"デンタル","categoryId":"cat_7"},{"id":"rule_23","priority":23,"keyword":"セイコツイン","categoryId":"cat_7"},{"id":"rule_24","priority":24,"keyword":"笑顔道","categoryId":"cat_7"},{"id":"rule_25","priority":25,"keyword":"耳鼻咽喉科","categoryId":"cat_7"},{"id":"rule_26","priority":26,"keyword":"スギヤツキヨク","categoryId":"cat_2"},{"id":"rule_27","priority":27,"keyword":"スギ薬局","categoryId":"cat_2"},{"id":"rule_28","priority":28,"keyword":"トモズ","categoryId":"cat_2"},{"id":"rule_29","priority":29,"keyword":"ファミリーマート","categoryId":"cat_1"},{"id":"rule_30","priority":30,"keyword":"ローソン","categoryId":"cat_1"},{"id":"rule_31","priority":31,"keyword":"セブン-イレブン","categoryId":"cat_1"},{"id":"rule_32","priority":32,"keyword":"セブンイレブン","categoryId":"cat_1"},{"id":"rule_33","priority":33,"keyword":"デイリーヤマザキ","categoryId":"cat_1"},{"id":"rule_34","priority":34,"keyword":"MYB","categoryId":"cat_1"},{"id":"rule_35","priority":35,"keyword":"まいばすけっと","categoryId":"cat_1"},{"id":"rule_36","priority":36,"keyword":"サミット","categoryId":"cat_1"},{"id":"rule_37","priority":37,"keyword":"成城石井","categoryId":"cat_1"},{"id":"rule_38","priority":38,"keyword":"イトク","categoryId":"cat_1"},{"id":"rule_39","priority":39,"keyword":"スターバックス","categoryId":"cat_1"},{"id":"rule_40","priority":40,"keyword":"マクドナルド","categoryId":"cat_1"},{"id":"rule_41","priority":41,"keyword":"ミドリショクドウ","categoryId":"cat_1"},{"id":"rule_42","priority":42,"keyword":"ハナマル","categoryId":"cat_1"},{"id":"rule_43","priority":43,"keyword":"ヤヨイケン","categoryId":"cat_1"},{"id":"rule_44","priority":44,"keyword":"スシロー","categoryId":"cat_1"},{"id":"rule_45","priority":45,"keyword":"なか卯","categoryId":"cat_1"},{"id":"rule_46","priority":46,"keyword":"ヨシノヤ","categoryId":"cat_1"},{"id":"rule_47","priority":47,"keyword":"ペッパーランチ","categoryId":"cat_1"},{"id":"rule_48","priority":48,"keyword":"壱角家","categoryId":"cat_1"},{"id":"rule_49","priority":49,"keyword":"イチカクヤ","categoryId":"cat_1"},{"id":"rule_50","priority":50,"keyword":"ゴンチャ","categoryId":"cat_1"},{"id":"rule_51","priority":51,"keyword":"ミスタードーナツ","categoryId":"cat_1"},{"id":"rule_52","priority":52,"keyword":"ベーカリー","categoryId":"cat_1"},{"id":"rule_53","priority":53,"keyword":"三田製麺所","categoryId":"cat_1"},{"id":"rule_54","priority":54,"keyword":"松屋","categoryId":"cat_1"},{"id":"rule_55","priority":55,"keyword":"CoCo壱番屋","categoryId":"cat_1"},{"id":"rule_56","priority":56,"keyword":"ジャパンビバレッジ","categoryId":"cat_1"},{"id":"rule_57","priority":57,"keyword":"飲料自販機","categoryId":"cat_1"},{"id":"rule_58","priority":58,"keyword":"コカ・コーラ","categoryId":"cat_1"},{"id":"rule_59","priority":59,"keyword":"キリン","categoryId":"cat_1"},{"id":"rule_60","priority":60,"keyword":"ダイドードリンコ","categoryId":"cat_1"},{"id":"rule_61","priority":61,"keyword":"ダイソー","categoryId":"cat_2"},{"id":"rule_62","priority":62,"keyword":"キャンドゥ","categoryId":"cat_2"},{"id":"rule_63","priority":63,"keyword":"無印良品","categoryId":"cat_2"},{"id":"rule_64","priority":64,"keyword":"ムジルシリヨウヒン","categoryId":"cat_2"},{"id":"rule_65","priority":65,"keyword":"ハンズ","categoryId":"cat_2"},{"id":"rule_66","priority":66,"keyword":"ロフト","categoryId":"cat_2"},{"id":"rule_67","priority":67,"keyword":"ランドリー","categoryId":"cat_2"},{"id":"rule_68","priority":68,"keyword":"ビックカメラ","categoryId":"cat_2"},{"id":"rule_69","priority":69,"keyword":"ETC","categoryId":"cat_8"},{"id":"rule_70","priority":70,"keyword":"ENEOS-SS","categoryId":"cat_8"},{"id":"rule_71","priority":71,"keyword":"出光興産","categoryId":"cat_8"},{"id":"rule_72","priority":72,"keyword":"トヨタレンタリース","categoryId":"cat_8"},{"id":"rule_73","priority":73,"keyword":"チヨイノリホケン","categoryId":"cat_16"},{"id":"rule_74","priority":74,"keyword":"三井住友海上","categoryId":"cat_16"},{"id":"rule_75","priority":75,"keyword":"GOアプリ","categoryId":"cat_5"},{"id":"rule_76","priority":76,"keyword":"リムジン","categoryId":"cat_5"},{"id":"rule_77","priority":77,"keyword":"タッチ決済","categoryId":"cat_5"},{"id":"rule_78","priority":78,"keyword":"えきねっと","categoryId":"cat_5"},{"id":"rule_79","priority":79,"keyword":"スマートEX","categoryId":"cat_5"},{"id":"rule_80","priority":80,"keyword":"モバイルSUICA","categoryId":"cat_5"},{"id":"rule_81","priority":81,"keyword":"モバイルPASMO","categoryId":"cat_5"},{"id":"rule_82","priority":82,"keyword":"オートチャージ","categoryId":"cat_5"},{"id":"rule_83","priority":83,"keyword":"キヨスク","categoryId":"cat_5"},{"id":"rule_84","priority":84,"keyword":"NEWDAYS","categoryId":"cat_5"},{"id":"rule_85","priority":85,"keyword":"ANA WEB","categoryId":"cat_5"},{"id":"rule_86","priority":86,"keyword":"ATAC TAP&GO","categoryId":"cat_5"},{"id":"rule_87","priority":87,"keyword":"GABA","categoryId":"cat_9"},{"id":"rule_88","priority":88,"keyword":"情報処理推進機構","categoryId":"cat_9"},{"id":"rule_89","priority":89,"keyword":"ノアダンスアカデミー","categoryId":"cat_3"},{"id":"rule_90","priority":90,"keyword":"ブックファースト","categoryId":"cat_9"},{"id":"rule_91","priority":91,"keyword":"ブツクファースト","categoryId":"cat_9"},{"id":"rule_92","priority":92,"keyword":"紀伊國屋","categoryId":"cat_9"},{"id":"rule_93","priority":93,"keyword":"ジュンク堂","categoryId":"cat_9"},{"id":"rule_94","priority":94,"keyword":"COCORO BOOKS","categoryId":"cat_9"},{"id":"rule_95","priority":95,"keyword":"宝くじ","categoryId":"cat_3"},{"id":"rule_96","priority":96,"keyword":"スポーツ振興くじ","categoryId":"cat_3"},{"id":"rule_97","priority":97,"keyword":"TOTO","categoryId":"cat_3"},{"id":"rule_98","priority":98,"keyword":"チケットぴあ","categoryId":"cat_3"},{"id":"rule_99","priority":99,"keyword":"イープラス","categoryId":"cat_3"},{"id":"rule_100","priority":100,"keyword":"アミューズメント","categoryId":"cat_3"},{"id":"rule_101","priority":101,"keyword":"STEAM","categoryId":"cat_3"},{"id":"rule_102","priority":102,"keyword":"タイトー","categoryId":"cat_3"},{"id":"rule_103","priority":103,"keyword":"AMAZON DOWNLOADS","categoryId":"cat_3"},{"id":"rule_104","priority":104,"keyword":"ヘアメイク","categoryId":"cat_6"},{"id":"rule_105","priority":105,"keyword":"ユニクロ","categoryId":"cat_6"},{"id":"rule_106","priority":106,"keyword":"スーツセレクト","categoryId":"cat_6"},{"id":"rule_107","priority":107,"keyword":"伊勢丹","categoryId":"cat_6"},{"id":"rule_108","priority":108,"keyword":"高島屋","categoryId":"cat_6"},{"id":"rule_109","priority":109,"keyword":"ZOZOTOWN","categoryId":"cat_6"},{"id":"rule_110","priority":110,"keyword":"ホテルニューオータニ","categoryId":"cat_10"},{"id":"rule_111","priority":111,"keyword":"ホテルニュ-オ-タニ","categoryId":"cat_10"},{"id":"rule_112","priority":112,"keyword":"カード年会費","categoryId":"cat_11"}],"storeAliases":[{"id":"alias_1","pattern":"ファミリーマート","canonicalName":"ファミリーマート"},{"id":"alias_2","pattern":"フアミリ－マ－ト","canonicalName":"ファミリーマート"},{"id":"alias_3","pattern":"ﾌｱﾐﾘ-ﾏ-ﾄ","canonicalName":"ファミリーマート"},{"id":"alias_4","pattern":"ローソン","canonicalName":"ローソン"},{"id":"alias_5","pattern":"ロ－ソン","canonicalName":"ローソン"},{"id":"alias_6","pattern":"セブン－イレブン","canonicalName":"セブン-イレブン"},{"id":"alias_7","pattern":"セブンイレブン","canonicalName":"セブン-イレブン"},{"id":"alias_8","pattern":"スギ薬局","canonicalName":"スギ薬局"},{"id":"alias_9","pattern":"スギヤツキヨク","canonicalName":"スギ薬局"},{"id":"alias_10","pattern":"ＦａｍｉＰａｙチャージ","canonicalName":"ファミペイチャージ"},{"id":"alias_11","pattern":"ＡＮＡ　Ｐａｙ","canonicalName":"ANA Pay"},{"id":"alias_12","pattern":"ポヴォゴリヨウリョウキン","canonicalName":"povoご利用料金"},{"id":"alias_13","pattern":"ｐｏｖｏご利用料金","canonicalName":"povoご利用料金"},{"id":"alias_14","pattern":"無印良品","canonicalName":"無印良品"},{"id":"alias_15","pattern":"ムジルシリヨウヒン","canonicalName":"無印良品"}],"expenses":[]};
+const STORAGE_KEY = "personal_kakeibo_mf_v1";
 
 const PALETTE = [
   "#1e3a8a", "#0f766e", "#2563eb", "#d97706", "#7c3aed",
   "#db2777", "#059669", "#dc2626", "#4f46e5", "#0284c7",
-  "#65a30d", "#ea580c", "#9333ea", "#475569", "#94a3b8"
+  "#65a30d", "#ea580c", "#9333ea", "#0891b2", "#b45309",
+  "#4338ca", "#475569", "#94a3b8"
 ];
 
 function cloneSeed() {
@@ -678,6 +756,13 @@ let editingExpenseId = null;
 let csvPreviewRows = [];
 let periodMode = "month";
 let chartType = "pie";
+let sortField = "date";
+let sortDir = "desc";
+
+function getUnmatchedCatId() {
+  const found = state.categories.find(c => c.name === "未分類");
+  return found ? found.id : (state.categories[state.categories.length - 1]?.id || "cat_18");
+}
 
 function showToast(msg) {
   const el = document.getElementById("toast");
@@ -708,7 +793,7 @@ function classifyDescription(desc) {
       return r.categoryId;
     }
   }
-  return "cat_15";
+  return getUnmatchedCatId();
 }
 
 function normalizeStoreName(rawDesc) {
@@ -723,7 +808,7 @@ function normalizeStoreName(rawDesc) {
 }
 
 function getCat(id) {
-  return state.categories.find(c => c.id === id) || { id: "cat_15", name: "未分類", costType: "変動費" };
+  return state.categories.find(c => c.id === id) || { id: getUnmatchedCatId(), name: "未分類", costType: "変動費" };
 }
 function getPm(id) {
   return state.paymentMethods.find(p => p.id === id) || { id: "pm_1", name: "不明", type: "" };
@@ -771,7 +856,7 @@ document.querySelectorAll("#chartTypeSeg button").forEach(btn => {
 
 document.getElementById("filterYear").addEventListener("change", renderAnalytics);
 document.getElementById("filterMonth").addEventListener("change", renderAnalytics);
-document.getElementById("excludeInvest").addEventListener("change", renderAnalytics);
+document.getElementById("excludeSpecial").addEventListener("change", renderAnalytics);
 
 function populateSelectors() {
   const years = [...new Set(state.expenses.map(e => e.date.slice(0, 4)))].sort().reverse();
@@ -801,19 +886,13 @@ function populateSelectors() {
 
   const efc = document.getElementById("expFilterCat");
   const prevEfc = efc.value;
-  efc.innerHTML = `<option value="">すべての支出科目</option>` + catOpts;
+  efc.innerHTML = `<option value="">すべて</option>` + catOpts;
   efc.value = prevEfc;
 
   const efp = document.getElementById("expFilterPm");
   const prevEfp = efp.value;
-  efp.innerHTML = `<option value="">すべての支払手段</option>` + pmOpts;
+  efp.innerHTML = `<option value="">すべて</option>` + pmOpts;
   efp.value = prevEfp;
-
-  const yms = [...new Set(state.expenses.map(e => e.date.slice(0, 7)))].sort().reverse();
-  const efy = document.getElementById("expFilterYm");
-  const prevEfy = efy.value;
-  efy.innerHTML = `<option value="">すべての年月</option>` + yms.map(ym => `<option value="${ym}">${ym}</option>`).join("");
-  efy.value = prevEfy;
 
   document.getElementById("cashCategory").innerHTML = catOpts;
   document.getElementById("newRuleCat").innerHTML = catOpts;
@@ -891,10 +970,13 @@ function buildSvgChart(items, total) {
 function renderAnalytics() {
   const y = document.getElementById("filterYear").value;
   const m = document.getElementById("filterMonth").value;
-  const exclInv = document.getElementById("excludeInvest").checked;
+  const exclSp = document.getElementById("excludeSpecial").checked;
 
   const filtered = state.expenses.filter(e => {
-    if (exclInv && e.categoryId === "cat_13") return false;
+    if (exclSp) {
+      const cat = getCat(e.categoryId);
+      if (cat.name === "特別な支出" || cat.name === "その他") return false;
+    }
     if (periodMode === "year") return e.date.startsWith(y + "-");
     if (periodMode === "month") return e.date.startsWith(`${y}-${m}`);
     return true;
@@ -919,17 +1001,17 @@ function renderAnalytics() {
     <div class="kpi accent">
       <div class="label">変動費合計</div>
       <div class="value">${fmtYen(varAmt)}</div>
-      <div class="meta">食費・日用品・交通費など</div>
+      <div class="meta">食費・日用品・交通費・趣味など</div>
     </div>
     <div class="kpi warn">
       <div class="label">固定費合計</div>
       <div class="value">${fmtYen(fixAmt)}</div>
-      <div class="meta">光熱費・通信費・サブスク・学習</div>
+      <div class="meta">水道光熱費・通信費・教養教育など</div>
     </div>
     <div class="kpi neutral">
-      <div class="label">特別支出・資産形成</div>
+      <div class="label">特別支出・税社会保障・振替</div>
       <div class="value">${fmtYen(otherAmt)}</div>
-      <div class="meta">ふるさと納税・投信積立</div>
+      <div class="meta">特別な支出・ふるさと納税・カード等</div>
     </div>
   `;
 
@@ -1012,33 +1094,80 @@ function renderAnalytics() {
   `).join("");
 }
 
-// 2. Expenses list & Inline Editing
-function getFilteredExpenses() {
-  const q = kanaFold(document.getElementById("expSearch").value);
+// 2. Expenses list, Multi-field Filtering & Sorting, Inline Editing
+function getFilteredAndSortedExpenses() {
+  const dateFrom = document.getElementById("expFilterDateFrom").value;
+  const dateTo = document.getElementById("expFilterDateTo").value;
   const fCat = document.getElementById("expFilterCat").value;
+  const q = kanaFold(document.getElementById("expSearch").value);
   const fPm = document.getElementById("expFilterPm").value;
-  const fYm = document.getElementById("expFilterYm").value;
+  const amtMinRaw = document.getElementById("expFilterAmtMin").value;
+  const amtMaxRaw = document.getElementById("expFilterAmtMax").value;
+  const amtMin = amtMinRaw !== "" ? Number(amtMinRaw) : null;
+  const amtMax = amtMaxRaw !== "" ? Number(amtMaxRaw) : null;
 
-  return state.expenses
-    .filter(e => {
-      if (fCat && e.categoryId !== fCat) return false;
-      if (fPm && e.paymentMethodId !== fPm) return false;
-      if (fYm && !e.date.startsWith(fYm)) return false;
-      if (q) {
-        const matchDesc = kanaFold(e.description).includes(q);
-        const matchRaw = kanaFold(e.rawDescription).includes(q);
-        if (!matchDesc && !matchRaw) return false;
-      }
-      return true;
-    })
-    .sort((a, b) => b.date.localeCompare(a.date));
+  const catOrderMap = new Map(state.categories.map((c, idx) => [c.id, idx]));
+  const pmOrderMap = new Map(state.paymentMethods.map((p, idx) => [p.id, idx]));
+
+  const filtered = state.expenses.filter(e => {
+    if (dateFrom && e.date < dateFrom) return false;
+    if (dateTo && e.date > dateTo) return false;
+    if (fCat && e.categoryId !== fCat) return false;
+    if (fPm && e.paymentMethodId !== fPm) return false;
+    if (amtMin !== null && !Number.isNaN(amtMin) && e.amount < amtMin) return false;
+    if (amtMax !== null && !Number.isNaN(amtMax) && e.amount > amtMax) return false;
+    if (q) {
+      const matchDesc = kanaFold(e.description).includes(q);
+      const matchRaw = kanaFold(e.rawDescription).includes(q);
+      if (!matchDesc && !matchRaw) return false;
+    }
+    return true;
+  });
+
+  const dir = sortDir === "asc" ? 1 : -1;
+  return filtered.sort((a, b) => {
+    let cmp = 0;
+    if (sortField === "date") {
+      cmp = a.date.localeCompare(b.date);
+    } else if (sortField === "category") {
+      const idxA = catOrderMap.get(a.categoryId) ?? 999;
+      const idxB = catOrderMap.get(b.categoryId) ?? 999;
+      cmp = idxA !== idxB ? idxA - idxB : getCat(a.categoryId).name.localeCompare(getCat(b.categoryId).name, "ja");
+    } else if (sortField === "description") {
+      cmp = (a.description || "").localeCompare(b.description || "", "ja");
+    } else if (sortField === "paymentMethod") {
+      const idxA = pmOrderMap.get(a.paymentMethodId) ?? 999;
+      const idxB = pmOrderMap.get(b.paymentMethodId) ?? 999;
+      cmp = idxA !== idxB ? idxA - idxB : getPm(a.paymentMethodId).name.localeCompare(getPm(b.paymentMethodId).name, "ja");
+    } else if (sortField === "amount") {
+      cmp = a.amount - b.amount;
+    }
+    if (cmp === 0) {
+      cmp = b.date.localeCompare(a.date);
+    }
+    return cmp * dir;
+  });
+}
+
+function updateSortIndicators() {
+  ["date", "category", "description", "paymentMethod", "amount"].forEach(f => {
+    const el = document.getElementById("sort-ind-" + f);
+    if (!el) return;
+    if (sortField === f) {
+      el.textContent = sortDir === "asc" ? "▲" : "▼";
+    } else {
+      el.textContent = "";
+    }
+  });
 }
 
 function renderExpensesTable() {
-  const list = getFilteredExpenses();
+  updateSortIndicators();
+  const list = getFilteredAndSortedExpenses();
   const sum = list.reduce((s, e) => s + e.amount, 0);
-  document.getElementById("expListMeta").textContent = `表示件数: ${list.length}件 / 合計金額: ${fmtYen(sum)}`;
+  document.getElementById("expListMeta").textContent = `表示件数: ${list.length}件（全${state.expenses.length}件中） / 合計金額: ${fmtYen(sum)}`;
 
+  const unmatchedId = getUnmatchedCatId();
   const tbody = document.querySelector("#expensesTable tbody");
   tbody.innerHTML = list.map(e => {
     const isEditing = editingExpenseId === e.id;
@@ -1068,7 +1197,7 @@ function renderExpensesTable() {
 
     const cat = getCat(e.categoryId);
     const pm = getPm(e.paymentMethodId);
-    const badgeCls = cat.id === "cat_15" ? "badge-unmatched" : cat.costType === "固定費" ? "badge-fix" : "badge-var";
+    const badgeCls = cat.id === unmatchedId ? "badge-unmatched" : cat.costType === "固定費" ? "badge-fix" : cat.costType === "変動費" ? "badge-var" : "badge-inv";
     return `<tr data-id="${e.id}">
       <td><input type="checkbox" class="exp-row-chk" value="${e.id}" /></td>
       <td>${escHtml(e.date)}</td>
@@ -1086,6 +1215,20 @@ function renderExpensesTable() {
     </tr>`;
   }).join("");
 }
+
+// Column header click sorting
+document.querySelectorAll("#expensesTable th.sortable").forEach(th => {
+  th.addEventListener("click", () => {
+    const f = th.dataset.sort;
+    if (sortField === f) {
+      sortDir = sortDir === "asc" ? "desc" : "asc";
+    } else {
+      sortField = f;
+      sortDir = (f === "date" || f === "amount") ? "desc" : "asc";
+    }
+    renderExpensesTable();
+  });
+});
 
 document.getElementById("expensesTable").addEventListener("click", e => {
   const tr = e.target.closest("tr[data-id]");
@@ -1151,9 +1294,21 @@ function saveInlineEdit(tr, id) {
   showToast("明細を更新しました");
 }
 
-["expSearch", "expFilterCat", "expFilterPm", "expFilterYm"].forEach(id => {
+["expFilterDateFrom", "expFilterDateTo", "expFilterCat", "expSearch", "expFilterPm", "expFilterAmtMin", "expFilterAmtMax"].forEach(id => {
   document.getElementById(id).addEventListener("input", renderExpensesTable);
   document.getElementById(id).addEventListener("change", renderExpensesTable);
+});
+
+document.getElementById("clearExpFiltersBtn").addEventListener("click", () => {
+  document.getElementById("expFilterDateFrom").value = "";
+  document.getElementById("expFilterDateTo").value = "";
+  document.getElementById("expFilterCat").value = "";
+  document.getElementById("expSearch").value = "";
+  document.getElementById("expFilterPm").value = "";
+  document.getElementById("expFilterAmtMin").value = "";
+  document.getElementById("expFilterAmtMax").value = "";
+  renderExpensesTable();
+  showToast("フィルタを解除しました");
 });
 
 document.getElementById("selectAllExp").addEventListener("change", e => {
@@ -1261,7 +1416,7 @@ async function handleCsvFiles(fileList) {
         }
       }
     }
-    // VIEW / Bic Camera Suica
+    // VIEW / Bic Camera Suica (handle 2-installment second billing skip if installment == 2)
     else if (firstRowStr.includes("会員番号") && secondRowStr.includes("対象カード")) {
       const cardLabel = rows[1][1] || "";
       const pmId = cardLabel.includes("ビックカメラ") ? "pm_4" : "pm_3";
@@ -1269,6 +1424,9 @@ async function handleCsvFiles(fileList) {
         const d = normalizeDateStr(r[0]);
         const amt = parseAmountStr(r[2]);
         const rawDesc = (r[1] || "").trim();
+        const payType = (r[5] || "").trim();
+        const instNum = (r[6] || "").trim();
+        if (payType.includes("２回払") && instNum === "2") continue;
         if (d && amt !== null && rawDesc) {
           parsed.push({ date: d, pmId, rawDescription: rawDesc, amount: amt, fileName: file.name });
         }
@@ -1374,8 +1532,9 @@ document.getElementById("commitCsvBtn").addEventListener("click", () => {
 // 4. Cash Input
 document.getElementById("cashDate").value = new Date().toISOString().slice(0, 10);
 document.getElementById("cashDesc").addEventListener("input", e => {
+  const unmatchedId = getUnmatchedCatId();
   const suggested = classifyDescription(e.target.value);
-  if (suggested !== "cat_15") {
+  if (suggested !== unmatchedId) {
     document.getElementById("cashCategory").value = suggested;
   }
 });
@@ -1523,11 +1682,12 @@ document.getElementById("addAliasForm").addEventListener("submit", e => {
 });
 
 document.getElementById("reapplyRulesBtn").addEventListener("click", () => {
+  const unmatchedId = getUnmatchedCatId();
   let updated = 0;
   for (const e of state.expenses) {
-    if (e.categoryId === "cat_15") {
+    if (e.categoryId === unmatchedId) {
       const nextCat = classifyDescription(e.rawDescription || e.description);
-      if (nextCat !== "cat_15") {
+      if (nextCat !== unmatchedId) {
         e.categoryId = nextCat;
         updated++;
       }
