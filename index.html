@@ -511,6 +511,7 @@
         <div id="expListMeta" style="font-size:0.84rem; font-weight:600; color:#1e293b;"></div>
         <div style="margin-left:auto; display:flex; gap:8px; flex-wrap:wrap;">
           <button class="btn btn-outline btn-sm" id="clearExpFiltersBtn">フィルタ解除</button>
+          <button class="btn btn-accent btn-sm" id="runAiFromListBtn">未分類をAI判定</button>
           <button class="btn btn-danger btn-sm" id="bulkDeleteBtn">選択行を削除</button>
         </div>
       </div>
@@ -692,6 +693,24 @@
           <tbody></tbody>
         </table>
       </div>
+    </div>
+
+
+    <div class="card">
+      <h2>
+        <span>AI連携設定（ハイブリッド自動判定・名寄せ）</span>
+        <span style="font-size:0.78rem; font-weight:normal; color:var(--muted);">※固定ルールで判定できない「未分類」や表記ゆれだけをGemini APIで補完します</span>
+      </h2>
+      <div class="controls">
+        <input type="password" id="geminiApiKeyInput" placeholder="Gemini APIキー（ブラウザ内localStorageのみ保存）" style="min-width:280px;" />
+        <select id="geminiModelSelect">
+          <option value="gemini-3.5-flash-lite">gemini-3.5-flash-lite（高速・低コスト）</option>
+          <option value="gemini-3.8-flash">gemini-3.8-flash（高精度）</option>
+        </select>
+        <button class="btn btn-primary btn-sm" id="saveApiKeyBtn">APIキーを保存</button>
+        <button class="btn btn-accent btn-sm" id="runAiHybridBtn">未分類・表記ゆれをAIで一括判定</button>
+      </div>
+      <div id="aiStatusText" style="font-size:0.8rem; color:var(--muted);"></div>
     </div>
 
     <div class="card">
@@ -1769,6 +1788,184 @@ function refreshAll() {
   renderCashHistory();
   renderMasters();
 }
+
+
+const API_KEY_STORAGE = "personal_kakeibo_gemini_api_key_v1";
+const API_MODEL_STORAGE = "personal_kakeibo_gemini_model_v1";
+
+function getApiKey() {
+  return (localStorage.getItem(API_KEY_STORAGE) || "").trim();
+}
+function getApiModel() {
+  return localStorage.getItem(API_MODEL_STORAGE) || "gemini-3.5-flash-lite";
+}
+
+function initAiSettingsUi() {
+  const keyInput = document.getElementById("geminiApiKeyInput");
+  const modelSel = document.getElementById("geminiModelSelect");
+  if (keyInput) keyInput.value = getApiKey();
+  if (modelSel) modelSel.value = getApiModel();
+}
+
+document.getElementById("saveApiKeyBtn").addEventListener("click", () => {
+  const k = document.getElementById("geminiApiKeyInput").value.trim();
+  const m = document.getElementById("geminiModelSelect").value;
+  localStorage.setItem(API_KEY_STORAGE, k);
+  localStorage.setItem(API_MODEL_STORAGE, m);
+  showToast("API設定をブラウザ内に保存しました");
+  updateAiStatus();
+});
+
+function updateAiStatus() {
+  const el = document.getElementById("aiStatusText");
+  if (!el) return;
+  const unmatchedId = getUnmatchedCatId();
+  const unmatchedCnt = state.expenses.filter(e => e.categoryId === unmatchedId).length;
+  const hasKey = Boolean(getApiKey());
+  el.textContent = `APIキー設定: ${hasKey ? "設定済み（端末内保存）" : "未設定"} / 現在の「未分類」明細: ${unmatchedCnt}件`;
+}
+
+async function runHybridAiClassification() {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    showToast("先に「マスタ・ルール管理」でGemini APIキーを入力・保存してください");
+    return;
+  }
+  const unmatchedId = getUnmatchedCatId();
+  const targets = state.expenses.filter(e => e.categoryId === unmatchedId);
+  if (targets.length === 0) {
+    showToast("AI判定が必要な「未分類」明細はありません");
+    return;
+  }
+
+  const model = getApiModel();
+  const validCatNames = state.categories.filter(c => c.name !== "未分類").map(c => c.name);
+  const catNameToIdMap = new Map(state.categories.map(c => [c.name, c.id]));
+
+  // Deduplicate descriptions to minimize API calls and tokens
+  const uniqueInputs = [...new Map(
+    targets.map(t => [t.rawDescription || t.description, { raw: t.rawDescription || t.description, current: t.description }])
+  ).values()];
+
+  const batchSize = 60;
+  let updatedExpenses = 0;
+  let addedRules = 0;
+
+  showToast(`AI判定を実行中（対象 ${uniqueInputs.length} 摘要 / ${targets.length} 件）...`);
+
+  for (let i = 0; i < uniqueInputs.length; i += batchSize) {
+    const chunk = uniqueInputs.slice(i, i + batchSize);
+    const prompt = [
+      "あなたは日本の家計簿データの分類・表記ゆれ統一アシスタントです。",
+      "以下の各明細（raw）について、最も適切な支出科目（category）と、全角/半角・カナ表記ゆれ・決済プレフィックス（ＡＰ／、ＱＰ／、／ＮＦＣ、／ｉＤなど）を整理した簡潔な店名・内容（cleanName）を返してください。",
+      "使用可能な支出科目一覧: " + validCatNames.join("、"),
+      "条件:",
+      "1. category は必ず上記一覧から1つ選んでください（迷ったら 'その他' または '食費'・'交通費'・'日用品' など実態に合うもの）。",
+      "2. cleanName は元の意味を保ちつつ読みやすく統一してください（例: 'ＦａｍｉＰａｙチャージ' -> 'ファミペイチャージ', 'スターバックス　コーヒー　ジャパン' -> 'スターバックス'）。",
+      "3. 出力は必ず次のJSON配列形式のみとし、説明文やコードブロック以外の余計な文字は含めないでください:",
+      '[{"raw":"元の文字列","category":"科目名","cleanName":"統一後名称"}]',
+      "対象データ:",
+      JSON.stringify(chunk.map(x => x.raw))
+    ].join("\n");
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.1 }
+      })
+    });
+
+    if (!resp.ok) {
+      const errText = await resp.text();
+      throw new Error(`APIエラー (${resp.status}): ${errText.slice(0, 180)}`);
+    }
+
+    const data = await resp.json();
+    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const jsonMatch = rawText.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) {
+      throw new Error("AI応答からJSON配列を抽出できませんでした");
+    }
+    const results = JSON.parse(jsonMatch[0]);
+    const resMap = new Map();
+    for (const item of results) {
+      if (item && typeof item.raw === "string") {
+        resMap.set(item.raw, item);
+      }
+    }
+
+    for (const exp of targets) {
+      const key = exp.rawDescription || exp.description;
+      const r = resMap.get(key);
+      if (!r) continue;
+      const mappedCatId = catNameToIdMap.get(r.category);
+      let changed = false;
+      if (mappedCatId && mappedCatId !== unmatchedId && exp.categoryId !== mappedCatId) {
+        exp.categoryId = mappedCatId;
+        changed = true;
+      }
+      if (r.cleanName && typeof r.cleanName === "string") {
+        const cleaned = r.cleanName.trim();
+        if (cleaned && exp.description !== cleaned) {
+          exp.description = cleaned;
+          changed = true;
+        }
+      }
+      if (changed) updatedExpenses++;
+    }
+
+    // Also register learned rules into state.categoryRules so future CSV imports hit local rules first (hybrid)
+    const existingKws = new Set(state.categoryRules.map(x => kanaFold(x.keyword)));
+    let maxPrio = Math.max(0, ...state.categoryRules.map(x => Number(x.priority) || 0));
+    for (const item of results) {
+      const mappedCatId = catNameToIdMap.get(item.category);
+      const kw = (item.cleanName || item.raw || "").trim();
+      if (mappedCatId && kw && kw.length >= 2 && !existingKws.has(kanaFold(kw))) {
+        maxPrio += 1;
+        state.categoryRules.push({
+          id: `rule_ai_${Date.now()}_${addedRules}`,
+          priority: maxPrio,
+          keyword: kw,
+          categoryId: mappedCatId
+        });
+        existingKws.add(kanaFold(kw));
+        addedRules++;
+      }
+    }
+  }
+
+  saveState(state);
+  refreshAll();
+  showToast(`AI判定完了: ${updatedExpenses}件を更新、${addedRules}件のルールを学習しました`);
+}
+
+document.getElementById("runAiHybridBtn").addEventListener("click", async () => {
+  try {
+    await runHybridAiClassification();
+  } catch (err) {
+    showToast(err.message || "AI判定中にエラーが発生しました");
+  }
+});
+
+document.getElementById("runAiFromListBtn").addEventListener("click", async () => {
+  try {
+    await runHybridAiClassification();
+  } catch (err) {
+    showToast(err.message || "AI判定中にエラーが発生しました");
+  }
+});
+
+const origRefreshAll = refreshAll;
+refreshAll = function() {
+  origRefreshAll();
+  initAiSettingsUi();
+  updateAiStatus();
+};
+initAiSettingsUi();
+updateAiStatus();
 
 refreshAll();
 </script>
