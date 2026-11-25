@@ -816,7 +816,13 @@ function classifyDescription(desc) {
 }
 
 function normalizeStoreName(rawDesc) {
-  const norm = String(rawDesc || "").normalize("NFKC").replace(/\s+/g, " ").trim();
+  let norm = String(rawDesc || "").normalize("NFKC").replace(/\s+/g, " ").trim();
+  // EPOS: AP/ or QP/ prefix indicates Apple Pay / QuickPay (payment tool only)
+  norm = norm.replace(/^(?:AP|QP)\s*[\/／]\s*/i, "");
+  // VISA / NFC / iD suffix/tag indicates payment tool only
+  norm = norm.replace(/(?:\s*[\/／]\s*(?:iD|NFC|AP|QP))+[\s\/／]*$/i, "");
+  norm = norm.replace(/\s*[\/／]\s*$/g, "").trim();
+
   const folded = kanaFold(norm);
   for (const a of state.storeAliases) {
     if (a.pattern && folded.includes(kanaFold(a.pattern))) {
@@ -1874,7 +1880,7 @@ async function runHybridAiClassification() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.1 }
+        generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
       })
     });
 
