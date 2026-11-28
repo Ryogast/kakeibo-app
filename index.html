@@ -2248,16 +2248,21 @@ function syncSubCategoryFilterOptions() {
   const fCat = document.getElementById("expFilterCat").value;
   const fSub = document.getElementById("expFilterSubCat");
   const prevSub = fSub.value;
-  let opts = [];
+  const set = new Set();
   if (fCat) {
-    opts = getSubCategoriesForCat(fCat);
+    for (const s of getSubCategoriesForCat(fCat)) set.add(s);
+    for (const e of state.expenses) {
+      if (e.categoryId === fCat && e.subCategory) set.add(e.subCategory);
+    }
   } else {
-    const set = new Set();
     for (const c of state.categories) {
       for (const s of getSubCategoriesForCat(c.id)) set.add(s);
     }
-    opts = [...set];
+    for (const e of state.expenses) {
+      if (e.subCategory) set.add(e.subCategory);
+    }
   }
+  const opts = [...set];
   fSub.innerHTML = `<option value="">すべて</option>` + opts.map(s => `<option value="${escHtml(s)}">${escHtml(s)}</option>`).join("");
   if (opts.includes(prevSub)) fSub.value = prevSub;
   else fSub.value = "";
@@ -2374,12 +2379,14 @@ renderExpensesTable = function() {
   const tbody = document.querySelector("#expensesTable tbody");
   tbody.innerHTML = list.map(e => {
     const isEditing = editingExpenseId === e.id;
-    const curSub = getExpSubCat(e);
+    const rawSub = (e && e.subCategory) ? String(e.subCategory) : "";
+    const curSub = rawSub ? rawSub : getDefaultSubCategory(e.categoryId, e.rawDescription || e.description);
     if (isEditing) {
       const catOptions = state.categories.map(c =>
         `<option value="${c.id}" ${c.id === e.categoryId ? "selected" : ""}>${escHtml(c.name)}</option>`
       ).join("");
-      const subOptions = getSubCategoriesForCat(e.categoryId).map(s =>
+      const subList = [...new Set([...getSubCategoriesForCat(e.categoryId), curSub].filter(Boolean))];
+      const subOptions = subList.map(s =>
         `<option value="${escHtml(s)}" ${s === curSub ? "selected" : ""}>${escHtml(s)}</option>`
       ).join("");
       const pmOptions = state.paymentMethods.map(p =>
