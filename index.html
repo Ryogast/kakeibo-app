@@ -809,6 +809,8 @@
 <script>
 const EMBEDDED_SEED = {"paymentMethods":[{"id":"pm_1","name":"EPOS","type":"クレジットカード"},{"id":"pm_2","name":"ANA VISA SFCゴールド","type":"クレジットカード"},{"id":"pm_3","name":"ビューゴールド","type":"クレジットカード"},{"id":"pm_4","name":"ビックカメラSuica","type":"クレジットカード"},{"id":"pm_5","name":"PayPayカード","type":"クレジットカード"},{"id":"pm_6","name":"ANA Pay","type":"QR・プリペイド"},{"id":"pm_7","name":"現金","type":"現金"}],"categories":[{"id":"cat_1","name":"食費","costType":"変動費","subCategories":["食料品","外食","コンビニ","その他テイクアウト"]},{"id":"cat_2","name":"日用品","costType":"変動費","subCategories":["日用品","雑貨"]},{"id":"cat_3","name":"趣味・娯楽","costType":"変動費","subCategories":["レジャー・行楽","映画・動画・音楽","書籍（趣味）","ゲーム","イベント・ライブ","ギャンブル・くじ"]},{"id":"cat_4","name":"交際費","costType":"変動費","subCategories":["飲み会・食事会","プレゼント・祝い事","冠婚葬祭"]},{"id":"cat_5","name":"交通費","costType":"変動費","subCategories":["電車","バス","タクシー","飛行機"]},{"id":"cat_6","name":"衣服・美容","costType":"変動費","subCategories":["洋服等","美容院","クリーニング"]},{"id":"cat_7","name":"健康・医療","costType":"変動費","subCategories":["病院・診療所","施術所","薬","整体等"]},{"id":"cat_8","name":"自動車","costType":"変動費","subCategories":["ガソリン","高速道路料金","駐車場","レンタカー・カーシェア"]},{"id":"cat_9","name":"教養・教育","costType":"固定費","subCategories":["習い事・学費","書籍（教養）","資格・試験","新聞"]},{"id":"cat_10","name":"特別な支出","costType":"特別支出","subCategories":["家具・家電","引っ越し"]},{"id":"cat_11","name":"現金・カード","costType":"振替・カード","subCategories":["カード引き落とし","現金引き出し","電子マネー・プリペイドチャージ"]},{"id":"cat_12","name":"水道・光熱費","costType":"固定費","subCategories":["電気代","ガス代","水道代"]},{"id":"cat_13","name":"通信費","costType":"固定費","subCategories":["携帯電話","インターネット・固定電話","クラウド・データ通信"]},{"id":"cat_14","name":"住宅","costType":"固定費","subCategories":["家賃"]},{"id":"cat_15","name":"税・社会保障","costType":"特別支出","subCategories":["所得税・住民税","ふるさと納税"]},{"id":"cat_16","name":"保険","costType":"固定費","subCategories":["生命保険","医療保険・がん保険","自動車保険・火災保険"]},{"id":"cat_17","name":"その他","costType":"変動費","subCategories":["雑費","手数料","使途不明金・その他"]},{"id":"cat_18","name":"未分類","costType":"変動費","subCategories":["未分類"]}],"categoryRules":[{"id":"rule_1","priority":1,"keyword":"ファミペイ","categoryId":"cat_1"},{"id":"rule_2","priority":2,"keyword":"ANA PAY","categoryId":"cat_1"},{"id":"rule_3","priority":3,"keyword":"SBI証券","categoryId":"cat_17"},{"id":"rule_4","priority":4,"keyword":"さとふる","categoryId":"cat_15"},{"id":"rule_5","priority":5,"keyword":"キリシマシ","categoryId":"cat_15"},{"id":"rule_6","priority":6,"keyword":"ダイセンシ","categoryId":"cat_15"},{"id":"rule_7","priority":7,"keyword":"ENEOSPOWER","categoryId":"cat_12"},{"id":"rule_8","priority":8,"keyword":"コスモでんき","categoryId":"cat_12"},{"id":"rule_9","priority":9,"keyword":"東京都水道局","categoryId":"cat_12"},{"id":"rule_10","priority":10,"keyword":"POVO","categoryId":"cat_13"},{"id":"rule_11","priority":11,"keyword":"ポヴォゴリヨウリョウキン","categoryId":"cat_13"},{"id":"rule_12","priority":12,"keyword":"ドコモ","categoryId":"cat_13"},{"id":"rule_13","priority":13,"keyword":"J:COM","categoryId":"cat_13"},{"id":"rule_14","priority":14,"keyword":"GOOGLE ONE","categoryId":"cat_13"},{"id":"rule_15","priority":15,"keyword":"APPLE COM","categoryId":"cat_3"},{"id":"rule_16","priority":16,"keyword":"ラジコ","categoryId":"cat_3"},{"id":"rule_17","priority":17,"keyword":"日経ID","categoryId":"cat_9"},{"id":"rule_18","priority":18,"keyword":"ファンティア","categoryId":"cat_3"},{"id":"rule_19","priority":19,"keyword":"ファンクラブ","categoryId":"cat_3"},{"id":"rule_20","priority":20,"keyword":"AMAZONプライム","categoryId":"cat_3"},{"id":"rule_21","priority":21,"keyword":"クリニック","categoryId":"cat_7"},{"id":"rule_22","priority":22,"keyword":"デンタル","categoryId":"cat_7"},{"id":"rule_23","priority":23,"keyword":"セイコツイン","categoryId":"cat_7"},{"id":"rule_24","priority":24,"keyword":"笑顔道","categoryId":"cat_7"},{"id":"rule_25","priority":25,"keyword":"耳鼻咽喉科","categoryId":"cat_7"},{"id":"rule_26","priority":26,"keyword":"スギヤツキヨク","categoryId":"cat_2"},{"id":"rule_27","priority":27,"keyword":"スギ薬局","categoryId":"cat_2"},{"id":"rule_28","priority":28,"keyword":"トモズ","categoryId":"cat_2"},{"id":"rule_29","priority":29,"keyword":"ファミリーマート","categoryId":"cat_1"},{"id":"rule_30","priority":30,"keyword":"ローソン","categoryId":"cat_1"},{"id":"rule_31","priority":31,"keyword":"セブン-イレブン","categoryId":"cat_1"},{"id":"rule_32","priority":32,"keyword":"セブンイレブン","categoryId":"cat_1"},{"id":"rule_33","priority":33,"keyword":"デイリーヤマザキ","categoryId":"cat_1"},{"id":"rule_34","priority":34,"keyword":"MYB","categoryId":"cat_1"},{"id":"rule_35","priority":35,"keyword":"まいばすけっと","categoryId":"cat_1"},{"id":"rule_36","priority":36,"keyword":"サミット","categoryId":"cat_1"},{"id":"rule_37","priority":37,"keyword":"成城石井","categoryId":"cat_1"},{"id":"rule_38","priority":38,"keyword":"イトク","categoryId":"cat_1"},{"id":"rule_39","priority":39,"keyword":"スターバックス","categoryId":"cat_1"},{"id":"rule_40","priority":40,"keyword":"マクドナルド","categoryId":"cat_1"},{"id":"rule_41","priority":41,"keyword":"ミドリショクドウ","categoryId":"cat_1"},{"id":"rule_42","priority":42,"keyword":"ハナマル","categoryId":"cat_1"},{"id":"rule_43","priority":43,"keyword":"ヤヨイケン","categoryId":"cat_1"},{"id":"rule_44","priority":44,"keyword":"スシロー","categoryId":"cat_1"},{"id":"rule_45","priority":45,"keyword":"なか卯","categoryId":"cat_1"},{"id":"rule_46","priority":46,"keyword":"ヨシノヤ","categoryId":"cat_1"},{"id":"rule_47","priority":47,"keyword":"ペッパーランチ","categoryId":"cat_1"},{"id":"rule_48","priority":48,"keyword":"壱角家","categoryId":"cat_1"},{"id":"rule_49","priority":49,"keyword":"イチカクヤ","categoryId":"cat_1"},{"id":"rule_50","priority":50,"keyword":"ゴンチャ","categoryId":"cat_1"},{"id":"rule_51","priority":51,"keyword":"ミスタードーナツ","categoryId":"cat_1"},{"id":"rule_52","priority":52,"keyword":"ベーカリー","categoryId":"cat_1"},{"id":"rule_53","priority":53,"keyword":"三田製麺所","categoryId":"cat_1"},{"id":"rule_54","priority":54,"keyword":"松屋","categoryId":"cat_1"},{"id":"rule_55","priority":55,"keyword":"CoCo壱番屋","categoryId":"cat_1"},{"id":"rule_56","priority":56,"keyword":"ジャパンビバレッジ","categoryId":"cat_1"},{"id":"rule_57","priority":57,"keyword":"飲料自販機","categoryId":"cat_1"},{"id":"rule_58","priority":58,"keyword":"コカ・コーラ","categoryId":"cat_1"},{"id":"rule_59","priority":59,"keyword":"キリン","categoryId":"cat_1"},{"id":"rule_60","priority":60,"keyword":"ダイドードリンコ","categoryId":"cat_1"},{"id":"rule_61","priority":61,"keyword":"ダイソー","categoryId":"cat_2"},{"id":"rule_62","priority":62,"keyword":"キャンドゥ","categoryId":"cat_2"},{"id":"rule_63","priority":63,"keyword":"無印良品","categoryId":"cat_2"},{"id":"rule_64","priority":64,"keyword":"ムジルシリヨウヒン","categoryId":"cat_2"},{"id":"rule_65","priority":65,"keyword":"ハンズ","categoryId":"cat_2"},{"id":"rule_66","priority":66,"keyword":"ロフト","categoryId":"cat_2"},{"id":"rule_67","priority":67,"keyword":"ランドリー","categoryId":"cat_2"},{"id":"rule_68","priority":68,"keyword":"ビックカメラ","categoryId":"cat_2"},{"id":"rule_69","priority":69,"keyword":"ETC","categoryId":"cat_8"},{"id":"rule_70","priority":70,"keyword":"ENEOS-SS","categoryId":"cat_8"},{"id":"rule_71","priority":71,"keyword":"出光興産","categoryId":"cat_8"},{"id":"rule_72","priority":72,"keyword":"トヨタレンタリース","categoryId":"cat_8"},{"id":"rule_73","priority":73,"keyword":"チヨイノリホケン","categoryId":"cat_16"},{"id":"rule_74","priority":74,"keyword":"三井住友海上","categoryId":"cat_16"},{"id":"rule_75","priority":75,"keyword":"GOアプリ","categoryId":"cat_5"},{"id":"rule_76","priority":76,"keyword":"リムジン","categoryId":"cat_5"},{"id":"rule_77","priority":77,"keyword":"タッチ決済","categoryId":"cat_5"},{"id":"rule_78","priority":78,"keyword":"えきねっと","categoryId":"cat_5"},{"id":"rule_79","priority":79,"keyword":"スマートEX","categoryId":"cat_5"},{"id":"rule_80","priority":80,"keyword":"モバイルSUICA","categoryId":"cat_5"},{"id":"rule_81","priority":81,"keyword":"モバイルPASMO","categoryId":"cat_5"},{"id":"rule_82","priority":82,"keyword":"オートチャージ","categoryId":"cat_5"},{"id":"rule_83","priority":83,"keyword":"キヨスク","categoryId":"cat_5"},{"id":"rule_84","priority":84,"keyword":"NEWDAYS","categoryId":"cat_5"},{"id":"rule_85","priority":85,"keyword":"ANA WEB","categoryId":"cat_5"},{"id":"rule_86","priority":86,"keyword":"ATAC TAP&GO","categoryId":"cat_5"},{"id":"rule_87","priority":87,"keyword":"GABA","categoryId":"cat_9"},{"id":"rule_88","priority":88,"keyword":"情報処理推進機構","categoryId":"cat_9"},{"id":"rule_89","priority":89,"keyword":"ノアダンスアカデミー","categoryId":"cat_3"},{"id":"rule_90","priority":90,"keyword":"ブックファースト","categoryId":"cat_9"},{"id":"rule_91","priority":91,"keyword":"ブツクファースト","categoryId":"cat_9"},{"id":"rule_92","priority":92,"keyword":"紀伊國屋","categoryId":"cat_9"},{"id":"rule_93","priority":93,"keyword":"ジュンク堂","categoryId":"cat_9"},{"id":"rule_94","priority":94,"keyword":"COCORO BOOKS","categoryId":"cat_9"},{"id":"rule_95","priority":95,"keyword":"宝くじ","categoryId":"cat_3"},{"id":"rule_96","priority":96,"keyword":"スポーツ振興くじ","categoryId":"cat_3"},{"id":"rule_97","priority":97,"keyword":"TOTO","categoryId":"cat_3"},{"id":"rule_98","priority":98,"keyword":"チケットぴあ","categoryId":"cat_3"},{"id":"rule_99","priority":99,"keyword":"イープラス","categoryId":"cat_3"},{"id":"rule_100","priority":100,"keyword":"アミューズメント","categoryId":"cat_3"},{"id":"rule_101","priority":101,"keyword":"STEAM","categoryId":"cat_3"},{"id":"rule_102","priority":102,"keyword":"タイトー","categoryId":"cat_3"},{"id":"rule_103","priority":103,"keyword":"AMAZON DOWNLOADS","categoryId":"cat_3"},{"id":"rule_104","priority":104,"keyword":"ヘアメイク","categoryId":"cat_6"},{"id":"rule_105","priority":105,"keyword":"ユニクロ","categoryId":"cat_6"},{"id":"rule_106","priority":106,"keyword":"スーツセレクト","categoryId":"cat_6"},{"id":"rule_107","priority":107,"keyword":"伊勢丹","categoryId":"cat_6"},{"id":"rule_108","priority":108,"keyword":"高島屋","categoryId":"cat_6"},{"id":"rule_109","priority":109,"keyword":"ZOZOTOWN","categoryId":"cat_6"},{"id":"rule_110","priority":110,"keyword":"ホテルニューオータニ","categoryId":"cat_10"},{"id":"rule_111","priority":111,"keyword":"ホテルニュ-オ-タニ","categoryId":"cat_10"},{"id":"rule_112","priority":112,"keyword":"カード年会費","categoryId":"cat_11"}],"storeAliases":[{"id":"alias_1","pattern":"ファミリーマート","canonicalName":"ファミリーマート"},{"id":"alias_2","pattern":"フアミリ－マ－ト","canonicalName":"ファミリーマート"},{"id":"alias_3","pattern":"ﾌｱﾐﾘ-ﾏ-ﾄ","canonicalName":"ファミリーマート"},{"id":"alias_4","pattern":"ローソン","canonicalName":"ローソン"},{"id":"alias_5","pattern":"ロ－ソン","canonicalName":"ローソン"},{"id":"alias_6","pattern":"セブン－イレブン","canonicalName":"セブン-イレブン"},{"id":"alias_7","pattern":"セブンイレブン","canonicalName":"セブン-イレブン"},{"id":"alias_8","pattern":"スギ薬局","canonicalName":"スギ薬局"},{"id":"alias_9","pattern":"スギヤツキヨク","canonicalName":"スギ薬局"},{"id":"alias_10","pattern":"ＦａｍｉＰａｙチャージ","canonicalName":"ファミペイチャージ"},{"id":"alias_11","pattern":"ＡＮＡ　Ｐａｙ","canonicalName":"ANA Pay"},{"id":"alias_12","pattern":"ポヴォゴリヨウリョウキン","canonicalName":"povoご利用料金"},{"id":"alias_13","pattern":"ｐｏｖｏご利用料金","canonicalName":"povoご利用料金"},{"id":"alias_14","pattern":"無印良品","canonicalName":"無印良品"},{"id":"alias_15","pattern":"ムジルシリヨウヒン","canonicalName":"無印良品"},{"id":"alias_16","pattern":"ミドリショクドウ","canonicalName":"JAみどり食堂"},{"id":"alias_17","pattern":"ジェイエイミドリショクドウ","canonicalName":"JAみどり食堂"},{"id":"alias_18","pattern":"JAみどり食堂","canonicalName":"JAみどり食堂"},{"id":"alias_19","pattern":"イチカクヤ","canonicalName":"壱角家"},{"id":"alias_20","pattern":"壱角家","canonicalName":"壱角家"},{"id":"alias_21","pattern":"ブツクファースト","canonicalName":"ブックファースト"},{"id":"alias_22","pattern":"ヘアメイクアツシユナカノテン","canonicalName":"ヘアメイクアッシュ中野店"},{"id":"alias_23","pattern":"ヘアメイクアッシュ中野店","canonicalName":"ヘアメイクアッシュ中野店"},{"id":"alias_24","pattern":"スシロ-","canonicalName":"スシロー"},{"id":"alias_25","pattern":"ヨシノヤ","canonicalName":"吉野家"},{"id":"alias_26","pattern":"ナカウ","canonicalName":"なか卯"},{"id":"alias_27","pattern":"マクドナルドモバイルオ-ダ-","canonicalName":"マクドナルド"},{"id":"alias_28","pattern":"コカ・コ-ラジハンキ","canonicalName":"コカ・コーラ自販機"},{"id":"alias_29","pattern":"コカ・コーラ Cmode 自販機","canonicalName":"コカ・コーラ自販機"},{"id":"alias_30","pattern":"コカコ-ラジハンキクイツクペイ","canonicalName":"コカ・コーラ自販機"},{"id":"alias_31","pattern":"ジヤパンビバレツジホ-ルデイ","canonicalName":"ジャパンビバレッジ"},{"id":"alias_32","pattern":"飲料自販機","canonicalName":"飲料自販機"},{"id":"alias_33","pattern":"ホテルニュ-オ-タニ","canonicalName":"ホテルニューオータニ"},{"id":"alias_34","pattern":"ホテルニユ-オ-タニ エンカイ","canonicalName":"ホテルニューオータニ"},{"id":"alias_35","pattern":"ホテルニューオータニ 宴会部門","canonicalName":"ホテルニューオータニ"},{"id":"alias_36","pattern":"ガバシンジュクニシグチラーニングスタ","canonicalName":"Gaba新宿西口ラーニングスタジオ"},{"id":"alias_37","pattern":"Gaba新宿西口ラーニングスタジオ","canonicalName":"Gaba新宿西口ラーニングスタジオ"},{"id":"alias_38","pattern":"ナカノトオリセイコツイン","canonicalName":"中野通り接骨院"},{"id":"alias_39","pattern":"オトデンタルクリニツク","canonicalName":"おとデンタルクリニック"},{"id":"alias_40","pattern":"おとデンタルクリニック","canonicalName":"おとデンタルクリニック"},{"id":"alias_41","pattern":"ジヨイサウンドナカノテン","canonicalName":"JOYSOUND中野店"},{"id":"alias_42","pattern":"JOYSOUND中野店","canonicalName":"JOYSOUND中野店"},{"id":"alias_43","pattern":"ス-ツセレクト","canonicalName":"スーツセレクト"},{"id":"alias_44","pattern":"ダイソ-","canonicalName":"ダイソー"},{"id":"alias_45","pattern":"ミスタ-ド-ナツ ナカノテン","canonicalName":"ミスタードーナツ中野店"},{"id":"alias_46","pattern":"サミツト","canonicalName":"サミット"},{"id":"alias_47","pattern":"イトク アキタヒガシテン","canonicalName":"いとく秋田東店"},{"id":"alias_48","pattern":"イトク シンコクドウテン","canonicalName":"いとく新国道店"},{"id":"alias_49","pattern":"ハナトク イトクシンコクドウテン","canonicalName":"いとく新国道店"},{"id":"alias_50","pattern":"伊徳 新国道店","canonicalName":"いとく新国道店"},{"id":"alias_51","pattern":"アキタセイブ","canonicalName":"秋田西武"},{"id":"alias_52","pattern":"セイジヨウイシイ キオイチヨウテン","canonicalName":"成城石井 紀尾井町店"},{"id":"alias_53","pattern":"V 成城石井 ガーデンテラス紀尾井町店","canonicalName":"成城石井 紀尾井町店"},{"id":"alias_54","pattern":"ニユ-デイズ キオスク","canonicalName":"NewDays"},{"id":"alias_55","pattern":"NewDays","canonicalName":"NewDays"},{"id":"alias_56","pattern":"ニツポンユウビン","canonicalName":"日本郵便"},{"id":"alias_57","pattern":"日本郵便","canonicalName":"日本郵便"},{"id":"alias_58","pattern":"ダイマルウメダテン","canonicalName":"大丸梅田店"},{"id":"alias_59","pattern":"シンジユクマルイテン","canonicalName":"新宿マルイ"},{"id":"alias_60","pattern":"オリオンギヨウザ ウツノミヤエキヒガシテ","canonicalName":"オリオン餃子 宇都宮駅東口店"},{"id":"alias_61","pattern":"ペツパ-ランチシ","canonicalName":"ペッパーランチ"},{"id":"alias_62","pattern":"ミタセイメンジヨ ナカノテン","canonicalName":"三田製麺所 中野店"},{"id":"alias_63","pattern":"三田製麺所 中野店","canonicalName":"三田製麺所 中野店"},{"id":"alias_64","pattern":"カレ-シヨツプインデアンクシロアサ","canonicalName":"カレーショップ インデアン"},{"id":"alias_65","pattern":"トウキヨウキリン","canonicalName":"東京キリン"}],"expenses":[]};
 const STORAGE_KEY = "personal_kakeibo_mf_v3";
+const API_KEY_STORAGE = "personal_kakeibo_gemini_api_key_v1";
+const API_MODEL_STORAGE = "personal_kakeibo_gemini_model_v1";
 
 const PALETTE = [
   "#1e3a8a", "#0f766e", "#2563eb", "#d97706", "#7c3aed",
@@ -853,1203 +855,6 @@ let periodMode = "month";
 let chartType = "pie";
 let sortField = "date";
 let sortDir = "desc";
-
-function getUnmatchedCatId() {
-  const found = state.categories.find(c => c.name === "未分類");
-  return found ? found.id : (state.categories[state.categories.length - 1]?.id || "cat_18");
-}
-
-function showToast(msg) {
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.classList.add("show");
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.remove("show"), 2600);
-}
-
-function kanaFold(str) {
-  if (!str) return "";
-  let s = String(str).normalize("NFKC").replace(/\s+/g, " ").trim().toUpperCase();
-  const small = "ァィゥェォッャュョヮヵヶ";
-  const large = "アイウエオツヤユヨワカケ";
-  let out = "";
-  for (const ch of s) {
-    const idx = small.indexOf(ch);
-    out += idx >= 0 ? large[idx] : ch;
-  }
-  return out.replace(/[－ー―]/g, "-");
-}
-
-function classifyDescription(desc) {
-  const folded = kanaFold(desc);
-  const sortedRules = [...state.categoryRules].sort((a, b) => a.priority - b.priority);
-  for (const r of sortedRules) {
-    if (r.keyword && folded.includes(kanaFold(r.keyword))) {
-      return r.categoryId;
-    }
-  }
-  return getUnmatchedCatId();
-}
-
-function normalizeStoreName(rawDesc) {
-  let norm = String(rawDesc || "").normalize("NFKC").replace(/\s+/g, " ").trim();
-  // EPOS: AP/ or QP/ prefix indicates Apple Pay / QuickPay (payment tool only)
-  norm = norm.replace(/^(?:AP|QP)\s*[\/／]\s*/i, "");
-  // VISA / NFC / iD suffix/tag indicates payment tool only
-  norm = norm.replace(/(?:\s*[\/／]\s*(?:iD|NFC|AP|QP))+[\s\/／]*$/i, "");
-  norm = norm.replace(/\s*[\/／]\s*$/g, "").trim();
-
-  const folded = kanaFold(norm);
-  for (const a of state.storeAliases) {
-    if (a.pattern && folded.includes(kanaFold(a.pattern))) {
-      return a.canonicalName;
-    }
-  }
-  return norm;
-}
-
-function getCat(id) {
-  return state.categories.find(c => c.id === id) || { id: getUnmatchedCatId(), name: "未分類", costType: "変動費" };
-}
-function getPm(id) {
-  return state.paymentMethods.find(p => p.id === id) || { id: "pm_1", name: "不明", type: "" };
-}
-function fmtYen(n) {
-  return Number(n || 0).toLocaleString("ja-JP") + "円";
-}
-function escHtml(s) {
-  return String(s ?? "").replace(/[&<>"']/g, m => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  }[m]));
-}
-
-// Navigation
-document.querySelectorAll("#mainNav button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("#mainNav button").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-    btn.classList.add("active");
-    document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
-    refreshAll();
-  });
-});
-
-// Period & Chart toggles
-document.querySelectorAll("#periodModeSeg button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("#periodModeSeg button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    periodMode = btn.dataset.mode;
-    document.getElementById("filterYear").style.display = periodMode === "all" ? "none" : "";
-    document.getElementById("filterMonth").style.display = periodMode === "month" ? "" : "none";
-    renderAnalytics();
-  });
-});
-
-document.querySelectorAll("#chartTypeSeg button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("#chartTypeSeg button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    chartType = btn.dataset.ctype;
-    renderAnalytics();
-  });
-});
-
-document.getElementById("filterYear").addEventListener("change", renderAnalytics);
-document.getElementById("filterMonth").addEventListener("change", renderAnalytics);
-document.getElementById("excludeSpecial").addEventListener("change", renderAnalytics);
-
-function populateSelectors() {
-  const years = [...new Set(state.expenses.map(e => e.date.slice(0, 4)))].sort().reverse();
-  if (years.length === 0) years.push("2026");
-  const fy = document.getElementById("filterYear");
-  const prevY = fy.value;
-  fy.innerHTML = years.map(y => `<option value="${y}">${y}年</option>`).join("");
-  if (years.includes(prevY)) fy.value = prevY;
-  else if (years.includes("2026")) fy.value = "2026";
-
-  const fm = document.getElementById("filterMonth");
-  const prevM = fm.value;
-  fm.innerHTML = Array.from({ length: 12 }, (_, i) => {
-    const m = String(i + 1).padStart(2, "0");
-    return `<option value="${m}">${i + 1}月</option>`;
-  }).join("");
-  if (prevM) {
-    fm.value = prevM;
-  } else {
-    const latest = [...state.expenses].sort((a, b) => b.date.localeCompare(a.date))[0];
-    fm.value = latest ? latest.date.slice(5, 7) : "11";
-  }
-
-  // Expense list filters
-  const catOpts = state.categories.map(c => `<option value="${c.id}">${escHtml(c.name)}</option>`).join("");
-  const pmOpts = state.paymentMethods.map(p => `<option value="${p.id}">${escHtml(p.name)}</option>`).join("");
-
-  const efc = document.getElementById("expFilterCat");
-  const prevEfc = efc.value;
-  efc.innerHTML = `<option value="">すべて</option>` + catOpts;
-  efc.value = prevEfc;
-
-  const efp = document.getElementById("expFilterPm");
-  const prevEfp = efp.value;
-  efp.innerHTML = `<option value="">すべて</option>` + pmOpts;
-  efp.value = prevEfp;
-
-  document.getElementById("cashCategory").innerHTML = catOpts;
-  document.getElementById("newRuleCat").innerHTML = catOpts;
-}
-
-function buildSvgChart(items, total) {
-  if (items.length === 0 || total <= 0) {
-    return `<div style="padding:24px; text-align:center; color:var(--muted); font-size:0.86rem;">該当データがありません</div>`;
-  }
-  const positiveItems = items.filter(it => it.amount > 0);
-  const posTotal = positiveItems.reduce((s, it) => s + it.amount, 0);
-  if (posTotal <= 0) {
-    return `<div style="padding:24px; text-align:center; color:var(--muted); font-size:0.86rem;">正の支出データがありません</div>`;
-  }
-
-  if (chartType === "bar") {
-    const segs = positiveItems.map((it, idx) => {
-      const pct = (it.amount / posTotal) * 100;
-      const color = PALETTE[idx % PALETTE.length];
-      return `<div class="stacked-seg" style="width:${pct.toFixed(2)}%; background:${color};" title="${escHtml(it.name)}: ${fmtYen(it.amount)} (${pct.toFixed(1)}%)"></div>`;
-    }).join("");
-    const legends = positiveItems.slice(0, 10).map((it, idx) => {
-      const pct = (it.amount / posTotal) * 100;
-      const color = PALETTE[idx % PALETTE.length];
-      return `<li class="legend-item">
-        <span style="display:inline-flex; align-items:center;"><span class="legend-dot" style="background:${color};"></span>${escHtml(it.name)}</span>
-        <span><strong>${fmtYen(it.amount)}</strong> <span style="color:var(--muted);">(${pct.toFixed(1)}%)</span></span>
-      </li>`;
-    }).join("");
-    return `<div class="stacked-bar">${segs}</div><ul class="legend-list">${legends}</ul>`;
-  }
-
-  // Pie / Donut SVG
-  let cumAngle = -Math.PI / 2;
-  const cx = 105, cy = 105, r = 90, ir = 48;
-  const paths = positiveItems.map((it, idx) => {
-    const slice = (it.amount / posTotal) * Math.PI * 2;
-    const color = PALETTE[idx % PALETTE.length];
-    if (slice >= Math.PI * 1.999) {
-      return `<circle cx="${cx}" cy="${cy}" r="${(r + ir) / 2}" fill="none" stroke="${color}" stroke-width="${r - ir}" />`;
-    }
-    const x1 = cx + r * Math.cos(cumAngle);
-    const y1 = cy + r * Math.sin(cumAngle);
-    const ix1 = cx + ir * Math.cos(cumAngle);
-    const iy1 = cy + ir * Math.sin(cumAngle);
-    cumAngle += slice;
-    const x2 = cx + r * Math.cos(cumAngle);
-    const y2 = cy + r * Math.sin(cumAngle);
-    const ix2 = cx + ir * Math.cos(cumAngle);
-    const iy2 = cy + ir * Math.sin(cumAngle);
-    const largeArc = slice > Math.PI ? 1 : 0;
-    const d = `M ${ix1} ${iy1} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${ir} ${ir} 0 ${largeArc} 0 ${ix1} ${iy1} Z`;
-    return `<path d="${d}" fill="${color}" stroke="#ffffff" stroke-width="1.5"><title>${escHtml(it.name)}: ${fmtYen(it.amount)}</title></path>`;
-  }).join("");
-
-  const legends = positiveItems.slice(0, 8).map((it, idx) => {
-    const pct = (it.amount / posTotal) * 100;
-    const color = PALETTE[idx % PALETTE.length];
-    return `<li class="legend-item">
-      <span style="display:inline-flex; align-items:center;"><span class="legend-dot" style="background:${color};"></span>${escHtml(it.name)}</span>
-      <span><strong>${fmtYen(it.amount)}</strong> <span style="color:var(--muted);">(${pct.toFixed(1)}%)</span></span>
-    </li>`;
-  }).join("");
-
-  return `<div class="pie-container">
-    <svg width="210" height="210" viewBox="0 0 210 210">
-      ${paths}
-      <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="11" fill="#64748b">合計</text>
-      <text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f172a">${(posTotal / 10000).toFixed(1)}万円</text>
-    </svg>
-    <ul class="legend-list">${legends}</ul>
-  </div>`;
-}
-
-function renderAnalytics() {
-  const y = document.getElementById("filterYear").value;
-  const m = document.getElementById("filterMonth").value;
-  const exclSp = document.getElementById("excludeSpecial").checked;
-
-  const filtered = state.expenses.filter(e => {
-    if (exclSp) {
-      const cat = getCat(e.categoryId);
-      if (cat.name === "特別な支出" || cat.name === "その他") return false;
-    }
-    if (periodMode === "year") return e.date.startsWith(y + "-");
-    if (periodMode === "month") return e.date.startsWith(`${y}-${m}`);
-    return true;
-  });
-
-  const total = filtered.reduce((s, e) => s + e.amount, 0);
-  let varAmt = 0, fixAmt = 0, otherAmt = 0;
-  for (const e of filtered) {
-    const c = getCat(e.categoryId);
-    if (c.costType === "変動費") varAmt += e.amount;
-    else if (c.costType === "固定費") fixAmt += e.amount;
-    else otherAmt += e.amount;
-  }
-
-  const labelPeriod = periodMode === "month" ? `${y}年${Number(m)}月` : periodMode === "year" ? `${y}年` : "全期間";
-  document.getElementById("kpiGrid").innerHTML = `
-    <div class="kpi">
-      <div class="label">${labelPeriod} 総支出額</div>
-      <div class="value">${fmtYen(total)}</div>
-      <div class="meta">明細件数: ${filtered.length}件</div>
-    </div>
-    <div class="kpi accent">
-      <div class="label">変動費合計</div>
-      <div class="value">${fmtYen(varAmt)}</div>
-      <div class="meta">食費・日用品・交通費・趣味など</div>
-    </div>
-    <div class="kpi warn">
-      <div class="label">固定費合計</div>
-      <div class="value">${fmtYen(fixAmt)}</div>
-      <div class="meta">水道光熱費・通信費・教養教育など</div>
-    </div>
-    <div class="kpi neutral">
-      <div class="label">特別支出・税社会保障・振替</div>
-      <div class="value">${fmtYen(otherAmt)}</div>
-      <div class="meta">特別な支出・ふるさと納税・カード等</div>
-    </div>
-  `;
-
-  // Category aggregation
-  const catMap = new Map();
-  for (const e of filtered) {
-    const c = getCat(e.categoryId);
-    const prev = catMap.get(c.id) || { id: c.id, name: c.name, costType: c.costType, count: 0, amount: 0 };
-    prev.count += 1;
-    prev.amount += e.amount;
-    catMap.set(c.id, prev);
-  }
-  const catItems = [...catMap.values()].sort((a, b) => b.amount - a.amount);
-  document.getElementById("categoryChartArea").innerHTML = buildSvgChart(catItems, total);
-  document.querySelector("#categorySummaryTable tbody").innerHTML = catItems.map(it => {
-    const pct = total !== 0 ? (it.amount / total) * 100 : 0;
-    const badgeCls = it.costType === "固定費" ? "badge-fix" : it.costType === "変動費" ? "badge-var" : "badge-inv";
-    return `<tr>
-      <td><strong>${escHtml(it.name)}</strong></td>
-      <td><span class="badge ${badgeCls}">${escHtml(it.costType)}</span></td>
-      <td class="num">${it.count}</td>
-      <td class="num">${fmtYen(it.amount)}</td>
-      <td class="num">${pct.toFixed(1)}%</td>
-    </tr>`;
-  }).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--muted);">データなし</td></tr>`;
-
-  // Payment method aggregation
-  const pmMap = new Map();
-  for (const e of filtered) {
-    const p = getPm(e.paymentMethodId);
-    const prev = pmMap.get(p.id) || { id: p.id, name: p.name, type: p.type, count: 0, amount: 0 };
-    prev.count += 1;
-    prev.amount += e.amount;
-    pmMap.set(p.id, prev);
-  }
-  const pmItems = [...pmMap.values()].sort((a, b) => b.amount - a.amount);
-  document.getElementById("paymentChartArea").innerHTML = buildSvgChart(pmItems, total);
-  document.querySelector("#paymentSummaryTable tbody").innerHTML = pmItems.map(it => {
-    const pct = total !== 0 ? (it.amount / total) * 100 : 0;
-    return `<tr>
-      <td><strong>${escHtml(it.name)}</strong></td>
-      <td><span class="badge">${escHtml(it.type)}</span></td>
-      <td class="num">${it.count}</td>
-      <td class="num">${fmtYen(it.amount)}</td>
-      <td class="num">${pct.toFixed(1)}%</td>
-    </tr>`;
-  }).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--muted);">データなし</td></tr>`;
-
-  // Merchant aggregation
-  const merchMap = new Map();
-  for (const e of filtered) {
-    const key = e.description || "(未記入)";
-    const prev = merchMap.get(key) || { name: key, count: 0, amount: 0, catId: e.categoryId };
-    prev.count += 1;
-    prev.amount += e.amount;
-    merchMap.set(key, prev);
-  }
-  const merchItems = [...merchMap.values()].sort((a, b) => b.amount - a.amount).slice(0, 20);
-  const maxMerch = merchItems.length > 0 ? Math.max(...merchItems.map(x => Math.max(x.amount, 0)), 1) : 1;
-
-  document.getElementById("merchantBarArea").innerHTML = merchItems.slice(0, 10).map((it, i) => {
-    const w = Math.max(0, (it.amount / maxMerch) * 100);
-    return `<div class="hbar-row">
-      <div class="hbar-top">
-        <span><strong>${i + 1}.</strong> ${escHtml(it.name)} <span style="color:var(--muted); font-size:0.75rem;">(${it.count}回)</span></span>
-        <strong>${fmtYen(it.amount)}</strong>
-      </div>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${w.toFixed(1)}%;"></div></div>
-    </div>`;
-  }).join("") || `<div style="color:var(--muted); font-size:0.86rem;">データなし</div>`;
-
-  document.querySelector("#merchantSummaryTable tbody").innerHTML = merchItems.map((it, i) => `
-    <tr>
-      <td>${i + 1}</td>
-      <td>${escHtml(it.name)}</td>
-      <td><span class="badge">${escHtml(getCat(it.catId).name)}</span></td>
-      <td class="num">${it.count}</td>
-      <td class="num"><strong>${fmtYen(it.amount)}</strong></td>
-    </tr>
-  `).join("");
-}
-
-// 2. Expenses list, Multi-field Filtering & Sorting, Inline Editing
-function getFilteredAndSortedExpenses() {
-  const dateFrom = document.getElementById("expFilterDateFrom").value;
-  const dateTo = document.getElementById("expFilterDateTo").value;
-  const fCat = document.getElementById("expFilterCat").value;
-  const q = kanaFold(document.getElementById("expSearch").value);
-  const fPm = document.getElementById("expFilterPm").value;
-  const amtMinRaw = document.getElementById("expFilterAmtMin").value;
-  const amtMaxRaw = document.getElementById("expFilterAmtMax").value;
-  const amtMin = amtMinRaw !== "" ? Number(amtMinRaw) : null;
-  const amtMax = amtMaxRaw !== "" ? Number(amtMaxRaw) : null;
-
-  const catOrderMap = new Map(state.categories.map((c, idx) => [c.id, idx]));
-  const pmOrderMap = new Map(state.paymentMethods.map((p, idx) => [p.id, idx]));
-
-  const filtered = state.expenses.filter(e => {
-    if (dateFrom && e.date < dateFrom) return false;
-    if (dateTo && e.date > dateTo) return false;
-    if (fCat && e.categoryId !== fCat) return false;
-    if (fPm && e.paymentMethodId !== fPm) return false;
-    if (amtMin !== null && !Number.isNaN(amtMin) && e.amount < amtMin) return false;
-    if (amtMax !== null && !Number.isNaN(amtMax) && e.amount > amtMax) return false;
-    if (q) {
-      const matchDesc = kanaFold(e.description).includes(q);
-      const matchRaw = kanaFold(e.rawDescription).includes(q);
-      if (!matchDesc && !matchRaw) return false;
-    }
-    return true;
-  });
-
-  const dir = sortDir === "asc" ? 1 : -1;
-  return filtered.sort((a, b) => {
-    let cmp = 0;
-    if (sortField === "date") {
-      cmp = a.date.localeCompare(b.date);
-    } else if (sortField === "category") {
-      const idxA = catOrderMap.get(a.categoryId) ?? 999;
-      const idxB = catOrderMap.get(b.categoryId) ?? 999;
-      cmp = idxA !== idxB ? idxA - idxB : getCat(a.categoryId).name.localeCompare(getCat(b.categoryId).name, "ja");
-    } else if (sortField === "description") {
-      cmp = (a.description || "").localeCompare(b.description || "", "ja");
-    } else if (sortField === "paymentMethod") {
-      const idxA = pmOrderMap.get(a.paymentMethodId) ?? 999;
-      const idxB = pmOrderMap.get(b.paymentMethodId) ?? 999;
-      cmp = idxA !== idxB ? idxA - idxB : getPm(a.paymentMethodId).name.localeCompare(getPm(b.paymentMethodId).name, "ja");
-    } else if (sortField === "amount") {
-      cmp = a.amount - b.amount;
-    }
-    if (cmp === 0) {
-      cmp = b.date.localeCompare(a.date);
-    }
-    return cmp * dir;
-  });
-}
-
-function updateSortIndicators() {
-  ["date", "category", "description", "paymentMethod", "amount"].forEach(f => {
-    const el = document.getElementById("sort-ind-" + f);
-    if (!el) return;
-    if (sortField === f) {
-      el.textContent = sortDir === "asc" ? "▲" : "▼";
-    } else {
-      el.textContent = "";
-    }
-  });
-}
-
-function renderExpensesTable() {
-  updateSortIndicators();
-  const list = getFilteredAndSortedExpenses();
-  const sum = list.reduce((s, e) => s + e.amount, 0);
-  document.getElementById("expListMeta").textContent = `表示件数: ${list.length}件（全${state.expenses.length}件中） / 合計金額: ${fmtYen(sum)}`;
-
-  const unmatchedId = getUnmatchedCatId();
-  const tbody = document.querySelector("#expensesTable tbody");
-  tbody.innerHTML = list.map(e => {
-    const isEditing = editingExpenseId === e.id;
-    if (isEditing) {
-      const catOptions = state.categories.map(c =>
-        `<option value="${c.id}" ${c.id === e.categoryId ? "selected" : ""}>${escHtml(c.name)}</option>`
-      ).join("");
-      const pmOptions = state.paymentMethods.map(p =>
-        `<option value="${p.id}" ${p.id === e.paymentMethodId ? "selected" : ""}>${escHtml(p.name)}</option>`
-      ).join("");
-      return `<tr data-id="${e.id}" style="background:#eff6ff;">
-        <td></td>
-        <td><input type="date" class="inline-input edit-date" value="${escHtml(e.date)}" /></td>
-        <td><select class="inline-input edit-cat">${catOptions}</select></td>
-        <td>
-          <input type="text" class="inline-input edit-desc" value="${escHtml(e.description)}" />
-          ${e.rawDescription && e.rawDescription !== e.description ? `<div style="font-size:0.72rem; color:var(--muted);">元表記: ${escHtml(e.rawDescription)}</div>` : ""}
-        </td>
-        <td><select class="inline-input edit-pm">${pmOptions}</select></td>
-        <td><input type="number" class="inline-input num edit-amt" value="${e.amount}" /></td>
-        <td>
-          <button class="btn btn-primary btn-sm save-edit-btn">保存</button>
-          <button class="btn btn-outline btn-sm cancel-edit-btn">取消</button>
-        </td>
-      </tr>`;
-    }
-
-    const cat = getCat(e.categoryId);
-    const pm = getPm(e.paymentMethodId);
-    const badgeCls = cat.id === unmatchedId ? "badge-unmatched" : cat.costType === "固定費" ? "badge-fix" : cat.costType === "変動費" ? "badge-var" : "badge-inv";
-    return `<tr data-id="${e.id}">
-      <td><input type="checkbox" class="exp-row-chk" value="${e.id}" /></td>
-      <td>${escHtml(e.date)}</td>
-      <td><span class="badge ${badgeCls}">${escHtml(cat.name)}</span></td>
-      <td>
-        <div>${escHtml(e.description)}</div>
-        ${e.rawDescription && e.rawDescription !== e.description ? `<div style="font-size:0.72rem; color:var(--muted);">元表記: ${escHtml(e.rawDescription)}</div>` : ""}
-      </td>
-      <td>${escHtml(pm.name)}</td>
-      <td class="num"><strong>${fmtYen(e.amount)}</strong></td>
-      <td>
-        <button class="btn btn-outline btn-sm start-edit-btn">編集</button>
-        <button class="btn btn-danger btn-sm del-row-btn">削除</button>
-      </td>
-    </tr>`;
-  }).join("");
-}
-
-// Column header click sorting
-document.querySelectorAll("#expensesTable th.sortable").forEach(th => {
-  th.addEventListener("click", () => {
-    const f = th.dataset.sort;
-    if (sortField === f) {
-      sortDir = sortDir === "asc" ? "desc" : "asc";
-    } else {
-      sortField = f;
-      sortDir = (f === "date" || f === "amount") ? "desc" : "asc";
-    }
-    renderExpensesTable();
-  });
-});
-
-document.getElementById("expensesTable").addEventListener("click", e => {
-  const tr = e.target.closest("tr[data-id]");
-  if (!tr) return;
-  const id = tr.dataset.id;
-
-  if (e.target.classList.contains("start-edit-btn")) {
-    editingExpenseId = id;
-    renderExpensesTable();
-  } else if (e.target.classList.contains("cancel-edit-btn")) {
-    editingExpenseId = null;
-    renderExpensesTable();
-  } else if (e.target.classList.contains("save-edit-btn")) {
-    saveInlineEdit(tr, id);
-  } else if (e.target.classList.contains("del-row-btn")) {
-    state.expenses = state.expenses.filter(x => x.id !== id);
-    saveState(state);
-    refreshAll();
-    showToast("明細を削除しました");
-  }
-});
-
-document.getElementById("expensesTable").addEventListener("dblclick", e => {
-  const tr = e.target.closest("tr[data-id]");
-  if (!tr || editingExpenseId === tr.dataset.id) return;
-  editingExpenseId = tr.dataset.id;
-  renderExpensesTable();
-});
-
-document.getElementById("expensesTable").addEventListener("keydown", e => {
-  const tr = e.target.closest("tr[data-id]");
-  if (!tr || editingExpenseId !== tr.dataset.id) return;
-  if (e.key === "Enter") {
-    e.preventDefault();
-    saveInlineEdit(tr, tr.dataset.id);
-  } else if (e.key === "Escape") {
-    editingExpenseId = null;
-    renderExpensesTable();
-  }
-});
-
-function saveInlineEdit(tr, id) {
-  const target = state.expenses.find(x => x.id === id);
-  if (!target) return;
-  const newDate = tr.querySelector(".edit-date").value;
-  const newCat = tr.querySelector(".edit-cat").value;
-  const newDesc = tr.querySelector(".edit-desc").value.trim();
-  const newPm = tr.querySelector(".edit-pm").value;
-  const newAmt = Number(tr.querySelector(".edit-amt").value);
-
-  if (!newDate || !newDesc || Number.isNaN(newAmt)) {
-    showToast("日付・摘要・金額を正しく入力してください");
-    return;
-  }
-  target.date = newDate;
-  target.categoryId = newCat;
-  target.description = newDesc;
-  target.paymentMethodId = newPm;
-  target.amount = newAmt;
-  editingExpenseId = null;
-  saveState(state);
-  refreshAll();
-  showToast("明細を更新しました");
-}
-
-["expFilterDateFrom", "expFilterDateTo", "expFilterCat", "expSearch", "expFilterPm", "expFilterAmtMin", "expFilterAmtMax"].forEach(id => {
-  document.getElementById(id).addEventListener("input", renderExpensesTable);
-  document.getElementById(id).addEventListener("change", renderExpensesTable);
-});
-
-document.getElementById("clearExpFiltersBtn").addEventListener("click", () => {
-  document.getElementById("expFilterDateFrom").value = "";
-  document.getElementById("expFilterDateTo").value = "";
-  document.getElementById("expFilterCat").value = "";
-  document.getElementById("expSearch").value = "";
-  document.getElementById("expFilterPm").value = "";
-  document.getElementById("expFilterAmtMin").value = "";
-  document.getElementById("expFilterAmtMax").value = "";
-  renderExpensesTable();
-  showToast("フィルタを解除しました");
-});
-
-document.getElementById("selectAllExp").addEventListener("change", e => {
-  document.querySelectorAll(".exp-row-chk").forEach(chk => { chk.checked = e.target.checked; });
-});
-
-document.getElementById("bulkDeleteBtn").addEventListener("click", () => {
-  const ids = [...document.querySelectorAll(".exp-row-chk:checked")].map(c => c.value);
-  if (ids.length === 0) {
-    showToast("削除する行を選択してください");
-    return;
-  }
-  const set = new Set(ids);
-  state.expenses = state.expenses.filter(e => !set.has(e.id));
-  saveState(state);
-  refreshAll();
-  showToast(`${ids.length}件の明細を削除しました`);
-});
-
-// 3. CSV Import
-const dropZone = document.getElementById("csvDropZone");
-const fileInput = document.getElementById("csvFileInput");
-dropZone.addEventListener("click", () => fileInput.click());
-dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("dragover"); });
-dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
-dropZone.addEventListener("drop", e => {
-  e.preventDefault();
-  dropZone.classList.remove("dragover");
-  if (e.dataTransfer.files.length) handleCsvFiles(e.dataTransfer.files);
-});
-fileInput.addEventListener("change", e => {
-  if (e.target.files.length) handleCsvFiles(e.target.files);
-});
-
-function parseCsvLine(line) {
-  const res = [];
-  let cur = "", inQuote = false;
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i];
-    if (inQuote) {
-      if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++; }
-      else if (ch === '"') inQuote = false;
-      else cur += ch;
-    } else {
-      if (ch === '"') inQuote = true;
-      else if (ch === ",") { res.push(cur); cur = ""; }
-      else cur += ch;
-    }
-  }
-  res.push(cur);
-  return res;
-}
-
-function parseCsvText(text) {
-  return text.split(/\r?\n/).filter(l => l.trim() !== "").map(parseCsvLine);
-}
-
-function normalizeDateStr(s) {
-  if (!s) return null;
-  const t = String(s).trim();
-  let m = t.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
-  if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
-  m = t.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日$/);
-  if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
-  return null;
-}
-
-function parseAmountStr(s) {
-  if (s == null) return null;
-  const t = String(s).trim().replace(/[,円\s]/g, "");
-  if (!t || t === "-" || t === "－") return null;
-  const n = Number(t);
-  return Number.isFinite(n) ? Math.round(n) : null;
-}
-
-async function decodeCsvBuffer(buf) {
-  const utf8 = new TextDecoder("utf-8", { fatal: false }).decode(buf);
-  if (utf8.includes("ご利用") || utf8.includes("ショッピング") || utf8.includes("会員番号") || utf8.includes("取引日")) {
-    return utf8;
-  }
-  return new TextDecoder("shift_jis", { fatal: false }).decode(buf);
-}
-
-async function handleCsvFiles(fileList) {
-  const parsed = [];
-  for (const file of fileList) {
-    const buf = await file.arrayBuffer();
-    const text = await decodeCsvBuffer(buf);
-    const rows = parseCsvText(text);
-    if (rows.length < 2) continue;
-
-    const firstRowStr = rows[0].join(",");
-    const secondRowStr = rows[1] ? rows[1].join(",") : "";
-
-    // EPOS
-    if (firstRowStr.includes("エポスカード") || (rows[1] && rows[1][0] && rows[1][0].includes("種別"))) {
-      for (const r of rows.slice(2)) {
-        if (r[0] && r[0].trim() === "ショッピング") {
-          const d = normalizeDateStr(r[1]);
-          const amt = parseAmountStr(r[4]);
-          const rawDesc = (r[2] || "").trim();
-          if (d && amt !== null && rawDesc) {
-            parsed.push({ date: d, pmId: "pm_1", rawDescription: rawDesc, amount: amt, fileName: file.name });
-          }
-        }
-      }
-    }
-    // VIEW / Bic Camera Suica (handle 2-installment second billing skip if installment == 2)
-    else if (firstRowStr.includes("会員番号") && secondRowStr.includes("対象カード")) {
-      const cardLabel = rows[1][1] || "";
-      const pmId = cardLabel.includes("ビックカメラ") ? "pm_4" : "pm_3";
-      for (const r of rows.slice(7)) {
-        const d = normalizeDateStr(r[0]);
-        const amt = parseAmountStr(r[2]);
-        const rawDesc = (r[1] || "").trim();
-        const payType = (r[5] || "").trim();
-        const instNum = (r[6] || "").trim();
-        if (payType.includes("２回払") && instNum === "2") continue;
-        if (d && amt !== null && rawDesc) {
-          parsed.push({ date: d, pmId, rawDescription: rawDesc, amount: amt, fileName: file.name });
-        }
-      }
-    }
-    // PayPay Card
-    else if (firstRowStr.includes("利用日") && firstRowStr.includes("利用店名")) {
-      for (const r of rows.slice(1)) {
-        const d = normalizeDateStr(r[0]);
-        const rawDesc = (r[1] || "").trim();
-        const amt = parseAmountStr(r[2] || r[3]);
-        if (d && amt !== null && rawDesc) {
-          parsed.push({ date: d, pmId: "pm_5", rawDescription: rawDesc, amount: amt, fileName: file.name });
-        }
-      }
-    }
-    // ANA VISA SFC Gold / Generic
-    else {
-      const pmId = file.name.toUpperCase().includes("ANAPAY") ? "pm_6" : "pm_2";
-      for (const r of rows) {
-        const d = normalizeDateStr(r[0]);
-        const rawDesc = (r[1] || "").trim();
-        const amt = parseAmountStr(r[2]);
-        if (d && amt !== null && rawDesc) {
-          parsed.push({ date: d, pmId, rawDescription: rawDesc, amount: amt, fileName: file.name });
-        }
-      }
-    }
-  }
-
-  const existingKeys = new Set(state.expenses.map(e => `${e.date}|${e.paymentMethodId}|${e.amount}|${e.rawDescription}`));
-  csvPreviewRows = parsed.map(item => {
-    const key = `${item.date}|${item.pmId}|${item.amount}|${item.rawDescription}`;
-    return {
-      ...item,
-      isDuplicate: existingKeys.has(key),
-      categoryId: classifyDescription(item.rawDescription),
-      description: normalizeStoreName(item.rawDescription)
-    };
-  });
-
-  renderCsvPreview();
-}
-
-function renderCsvPreview() {
-  const sec = document.getElementById("csvPreviewSection");
-  sec.style.display = "block";
-  const skipDup = document.getElementById("skipDuplicatesChk").checked;
-  const activeRows = skipDup ? csvPreviewRows.filter(r => !r.isDuplicate) : csvPreviewRows;
-  document.getElementById("csvPreviewCount").textContent =
-    `解析結果: 全${csvPreviewRows.length}件（新規登録対象: ${activeRows.length}件 / 重複: ${csvPreviewRows.filter(r => r.isDuplicate).length}件）`;
-
-  document.querySelector("#csvPreviewTable tbody").innerHTML = csvPreviewRows.slice(0, 150).map((r, idx) => {
-    const catOpts = state.categories.map(c =>
-      `<option value="${c.id}" ${c.id === r.categoryId ? "selected" : ""}>${escHtml(c.name)}</option>`
-    ).join("");
-    return `<tr style="${r.isDuplicate && skipDup ? "opacity:0.45;" : ""}">
-      <td>${r.isDuplicate ? `<span class="badge badge-unmatched">重複</span>` : `<span class="badge badge-fix">新規</span>`}</td>
-      <td>${r.date}</td>
-      <td>${escHtml(getPm(r.pmId).name)}</td>
-      <td><select class="csv-prev-cat" data-idx="${idx}">${catOpts}</select></td>
-      <td>${escHtml(r.description)}</td>
-      <td class="num">${fmtYen(r.amount)}</td>
-    </tr>`;
-  }).join("");
-}
-
-document.getElementById("skipDuplicatesChk").addEventListener("change", renderCsvPreview);
-document.getElementById("csvPreviewTable").addEventListener("change", e => {
-  if (e.target.classList.contains("csv-prev-cat")) {
-    const idx = Number(e.target.dataset.idx);
-    csvPreviewRows[idx].categoryId = e.target.value;
-  }
-});
-
-document.getElementById("commitCsvBtn").addEventListener("click", () => {
-  const skipDup = document.getElementById("skipDuplicatesChk").checked;
-  const toAdd = skipDup ? csvPreviewRows.filter(r => !r.isDuplicate) : csvPreviewRows;
-  if (toAdd.length === 0) {
-    showToast("新規登録する明細がありません");
-    return;
-  }
-  const now = Date.now();
-  toAdd.forEach((r, i) => {
-    state.expenses.push({
-      id: `exp_csv_${now}_${i}`,
-      date: r.date,
-      categoryId: r.categoryId,
-      paymentMethodId: r.pmId,
-      description: r.description,
-      rawDescription: r.rawDescription,
-      amount: r.amount,
-      sourceType: `CSV (${r.fileName})`
-    });
-  });
-  saveState(state);
-  csvPreviewRows = [];
-  document.getElementById("csvPreviewSection").style.display = "none";
-  refreshAll();
-  showToast(`${toAdd.length}件の明細を取り込みました`);
-});
-
-// 4. Cash Input
-document.getElementById("cashDate").value = new Date().toISOString().slice(0, 10);
-document.getElementById("cashDesc").addEventListener("input", e => {
-  const unmatchedId = getUnmatchedCatId();
-  const suggested = classifyDescription(e.target.value);
-  if (suggested !== unmatchedId) {
-    document.getElementById("cashCategory").value = suggested;
-  }
-});
-
-document.getElementById("cashForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const date = document.getElementById("cashDate").value;
-  const desc = document.getElementById("cashDesc").value.trim();
-  const categoryId = document.getElementById("cashCategory").value;
-  const amount = Number(document.getElementById("cashAmount").value);
-  if (!date || !desc || !amount) return;
-
-  state.expenses.push({
-    id: `exp_cash_${Date.now()}`,
-    date,
-    categoryId,
-    paymentMethodId: "pm_7",
-    description: desc,
-    rawDescription: desc,
-    amount,
-    sourceType: "現金手入力"
-  });
-  saveState(state);
-  document.getElementById("cashDesc").value = "";
-  document.getElementById("cashAmount").value = "";
-  refreshAll();
-  showToast("現金支出を登録しました");
-});
-
-function renderCashHistory() {
-  const cashList = state.expenses
-    .filter(e => e.paymentMethodId === "pm_7")
-    .sort((a, b) => b.date.localeCompare(a.date));
-  document.querySelector("#cashHistoryTable tbody").innerHTML = cashList.map(e => `
-    <tr>
-      <td>${e.date}</td>
-      <td><span class="badge">${escHtml(getCat(e.categoryId).name)}</span></td>
-      <td>${escHtml(e.description)}</td>
-      <td class="num"><strong>${fmtYen(e.amount)}</strong></td>
-      <td><button class="btn btn-danger btn-sm" onclick="deleteExpenseById('${e.id}')">削除</button></td>
-    </tr>
-  `).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--muted);">現金支出の履歴はまだありません</td></tr>`;
-}
-
-window.deleteExpenseById = function(id) {
-  state.expenses = state.expenses.filter(e => e.id !== id);
-  saveState(state);
-  refreshAll();
-  showToast("削除しました");
-};
-
-// 5. Masters & Rules
-function renderMasters() {
-  document.querySelector("#categoriesMasterTable tbody").innerHTML = state.categories.map(c => {
-    const cnt = state.expenses.filter(e => e.categoryId === c.id).length;
-    return `<tr><td><strong>${escHtml(c.name)}</strong></td><td>${escHtml(c.costType)}</td><td class="num">${cnt}</td></tr>`;
-  }).join("");
-
-  document.querySelector("#pmMasterTable tbody").innerHTML = state.paymentMethods.map(p => {
-    const cnt = state.expenses.filter(e => e.paymentMethodId === p.id).length;
-    return `<tr><td><strong>${escHtml(p.name)}</strong></td><td>${escHtml(p.type)}</td><td class="num">${cnt}</td></tr>`;
-  }).join("");
-
-  const sortedRules = [...state.categoryRules].sort((a, b) => a.priority - b.priority);
-  document.querySelector("#rulesMasterTable tbody").innerHTML = sortedRules.map(r => `
-    <tr>
-      <td>${r.priority}</td>
-      <td><code>${escHtml(r.keyword)}</code></td>
-      <td><span class="badge">${escHtml(getCat(r.categoryId).name)}</span></td>
-      <td><button class="btn btn-danger btn-sm" onclick="deleteRule('${r.id}')">削除</button></td>
-    </tr>
-  `).join("");
-
-  document.querySelector("#aliasesMasterTable tbody").innerHTML = state.storeAliases.map(a => `
-    <tr>
-      <td><code>${escHtml(a.pattern)}</code></td>
-      <td><strong>${escHtml(a.canonicalName)}</strong></td>
-      <td><button class="btn btn-danger btn-sm" onclick="deleteAlias('${a.id}')">削除</button></td>
-    </tr>
-  `).join("");
-}
-
-window.deleteRule = function(id) {
-  state.categoryRules = state.categoryRules.filter(r => r.id !== id);
-  saveState(state);
-  renderMasters();
-  showToast("ルールを削除しました");
-};
-
-window.deleteAlias = function(id) {
-  state.storeAliases = state.storeAliases.filter(a => a.id !== id);
-  saveState(state);
-  renderMasters();
-  showToast("名寄せルールを削除しました");
-};
-
-document.getElementById("addCategoryForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const name = document.getElementById("newCatName").value.trim();
-  const costType = document.getElementById("newCatType").value;
-  if (!name) return;
-  state.categories.push({ id: `cat_${Date.now()}`, name, costType });
-  saveState(state);
-  document.getElementById("newCatName").value = "";
-  refreshAll();
-  showToast(`支出科目「${name}」を追加しました`);
-});
-
-document.getElementById("addPmForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const name = document.getElementById("newPmName").value.trim();
-  const type = document.getElementById("newPmType").value;
-  if (!name) return;
-  state.paymentMethods.push({ id: `pm_${Date.now()}`, name, type });
-  saveState(state);
-  document.getElementById("newPmName").value = "";
-  refreshAll();
-  showToast(`支払手段「${name}」を追加しました`);
-});
-
-document.getElementById("addRuleForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const priority = Number(document.getElementById("newRulePrio").value) || 50;
-  const keyword = document.getElementById("newRuleKw").value.trim();
-  const categoryId = document.getElementById("newRuleCat").value;
-  if (!keyword) return;
-  state.categoryRules.push({ id: `rule_${Date.now()}`, priority, keyword, categoryId });
-  saveState(state);
-  document.getElementById("newRuleKw").value = "";
-  renderMasters();
-  showToast("自動判定ルールを追加しました");
-});
-
-document.getElementById("addAliasForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const pattern = document.getElementById("newAliasPattern").value.trim();
-  const canonicalName = document.getElementById("newAliasCanonical").value.trim();
-  if (!pattern || !canonicalName) return;
-  state.storeAliases.push({ id: `alias_${Date.now()}`, pattern, canonicalName });
-  saveState(state);
-  document.getElementById("newAliasPattern").value = "";
-  document.getElementById("newAliasCanonical").value = "";
-  renderMasters();
-  showToast("店名名寄せルールを追加しました");
-});
-
-document.getElementById("reapplyRulesBtn").addEventListener("click", () => {
-  const unmatchedId = getUnmatchedCatId();
-  let updated = 0;
-  for (const e of state.expenses) {
-    if (e.categoryId === unmatchedId) {
-      const nextCat = classifyDescription(e.rawDescription || e.description);
-      if (nextCat !== unmatchedId) {
-        e.categoryId = nextCat;
-        updated++;
-      }
-    }
-  }
-  saveState(state);
-  refreshAll();
-  showToast(`${updated}件の未分類明細に科目を適用しました`);
-});
-
-document.getElementById("reapplyAliasesBtn").addEventListener("click", () => {
-  let updated = 0;
-  for (const e of state.expenses) {
-    const nextName = normalizeStoreName(e.rawDescription || e.description);
-    if (nextName !== e.description) {
-      e.description = nextName;
-      updated++;
-    }
-  }
-  saveState(state);
-  refreshAll();
-  showToast(`${updated}件の明細に店名名寄せを適用しました`);
-});
-
-// Backup / Restore / Reset
-document.getElementById("exportJsonBtn").addEventListener("click", () => {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `kakeibo_backup_${new Date().toISOString().slice(0, 10)}.json`;
-  a.click();
-});
-
-document.getElementById("exportCsvBtn").addEventListener("click", () => {
-  const header = ["支出日", "支出科目", "中分類", "費用区分", "摘要", "元表記", "支払手段", "金額", "取込元"];
-  const rows = state.expenses.map(e => {
-    const c = getCat(e.categoryId);
-    const p = getPm(e.paymentMethodId);
-    return [e.date, c.name, getExpSubCat(e), c.costType, e.description, e.rawDescription, p.name, e.amount, e.sourceType]
-      .map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(",");
-  });
-  const bom = "\uFEFF";
-  const blob = new Blob([bom + [header.join(","), ...rows].join("\r\n")], { type: "text/csv;charset=utf-8;" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `kakeibo_expenses_${new Date().toISOString().slice(0, 10)}.csv`;
-  a.click();
-});
-
-document.getElementById("importJsonInput").addEventListener("change", async e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  try {
-    const text = await file.text();
-    const parsed = JSON.parse(text);
-    if (parsed && Array.isArray(parsed.expenses)) {
-      state = parsed;
-      saveState(state);
-      refreshAll();
-      showToast("JSONバックアップから復元しました");
-    }
-  } catch (err) {
-    showToast("JSONの読み込みに失敗しました");
-  }
-});
-
-document.getElementById("resetSeedBtn").addEventListener("click", () => {
-  if (!confirm("現在の明細・編集内容を破棄し、初期マスタ状態（明細0件）へ戻しますか？")) return;
-  state = cloneSeed();
-  saveState(state);
-  refreshAll();
-  showToast("初期マスタ状態へリセット（明細0件）しました");
-});
-
-function refreshAll() {
-  populateSelectors();
-  renderAnalytics();
-  renderExpensesTable();
-  renderCashHistory();
-  renderMasters();
-}
-
-
-const API_KEY_STORAGE = "personal_kakeibo_gemini_api_key_v1";
-const API_MODEL_STORAGE = "personal_kakeibo_gemini_model_v1";
-
-function getApiKey() {
-  return (localStorage.getItem(API_KEY_STORAGE) || "").trim();
-}
-function getApiModel() {
-  return localStorage.getItem(API_MODEL_STORAGE) || "gemini-3.5-flash-lite";
-}
-
-function initAiSettingsUi() {
-  const keyInput = document.getElementById("geminiApiKeyInput");
-  const modelSel = document.getElementById("geminiModelSelect");
-  if (keyInput) keyInput.value = getApiKey();
-  if (modelSel) modelSel.value = getApiModel();
-}
-
-document.getElementById("saveApiKeyBtn").addEventListener("click", () => {
-  const k = document.getElementById("geminiApiKeyInput").value.trim();
-  const m = document.getElementById("geminiModelSelect").value;
-  localStorage.setItem(API_KEY_STORAGE, k);
-  localStorage.setItem(API_MODEL_STORAGE, m);
-  showToast("API設定をブラウザ内に保存しました");
-  updateAiStatus();
-});
-
-function updateAiStatus() {
-  const el = document.getElementById("aiStatusText");
-  if (!el) return;
-  const unmatchedId = getUnmatchedCatId();
-  const unmatchedCnt = state.expenses.filter(e => e.categoryId === unmatchedId).length;
-  const hasKey = Boolean(getApiKey());
-  el.textContent = `APIキー設定: ${hasKey ? "設定済み（端末内保存）" : "未設定"} / 現在の「未分類」明細: ${unmatchedCnt}件`;
-}
-
-async function runHybridAiClassification() {
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    showToast("先に「マスタ・ルール管理」でGemini APIキーを入力・保存してください");
-    return;
-  }
-  const unmatchedId = getUnmatchedCatId();
-  const targets = state.expenses.filter(e => e.categoryId === unmatchedId);
-  if (targets.length === 0) {
-    showToast("AI判定が必要な「未分類」明細はありません");
-    return;
-  }
-
-  const model = getApiModel();
-  const validCatNames = state.categories.filter(c => c.name !== "未分類").map(c => c.name);
-  const catNameToIdMap = new Map(state.categories.map(c => [c.name, c.id]));
-
-  // Deduplicate descriptions to minimize API calls and tokens
-  const uniqueInputs = [...new Map(
-    targets.map(t => [t.rawDescription || t.description, { raw: t.rawDescription || t.description, current: t.description }])
-  ).values()];
-
-  const batchSize = 60;
-  let updatedExpenses = 0;
-  let addedRules = 0;
-
-  showToast(`AI判定を実行中（対象 ${uniqueInputs.length} 摘要 / ${targets.length} 件）...`);
-
-  for (let i = 0; i < uniqueInputs.length; i += batchSize) {
-    const chunk = uniqueInputs.slice(i, i + batchSize);
-    const prompt = [
-      "あなたは日本の家計簿データの分類・表記ゆれ統一アシスタントです。",
-      "以下の各明細（raw）について、最も適切な支出科目（category）と、全角/半角・カナ表記ゆれ・決済プレフィックス（ＡＰ／、ＱＰ／、／ＮＦＣ、／ｉＤなど）を整理した簡潔な店名・内容（cleanName）を返してください。",
-      "使用可能な支出科目一覧: " + validCatNames.join("、"),
-      "条件:",
-      "1. category は必ず上記一覧から1つ選んでください（迷ったら 'その他' または '食費'・'交通費'・'日用品' など実態に合うもの）。",
-      "2. cleanName は元の意味を保ちつつ読みやすく統一してください（例: 'ＦａｍｉＰａｙチャージ' -> 'ファミペイチャージ', 'スターバックス　コーヒー　ジャパン' -> 'スターバックス'）。",
-      "3. 出力は必ず次のJSON配列形式のみとし、説明文やコードブロック以外の余計な文字は含めないでください:",
-      '[{"raw":"元の文字列","category":"科目名","cleanName":"統一後名称"}]',
-      "対象データ:",
-      JSON.stringify(chunk.map(x => x.raw))
-    ].join("\n");
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
-    const resp = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
-      })
-    });
-
-    if (!resp.ok) {
-      const errText = await resp.text();
-      throw new Error(`APIエラー (${resp.status}): ${errText.slice(0, 180)}`);
-    }
-
-    const data = await resp.json();
-    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    const jsonMatch = rawText.match(/\[[\s\S]*\]/);
-    if (!jsonMatch) {
-      throw new Error("AI応答からJSON配列を抽出できませんでした");
-    }
-    const results = JSON.parse(jsonMatch[0]);
-    const resMap = new Map();
-    for (const item of results) {
-      if (item && typeof item.raw === "string") {
-        resMap.set(item.raw, item);
-      }
-    }
-
-    for (const exp of targets) {
-      const key = exp.rawDescription || exp.description;
-      const r = resMap.get(key);
-      if (!r) continue;
-      const mappedCatId = catNameToIdMap.get(r.category);
-      let changed = false;
-      if (mappedCatId && mappedCatId !== unmatchedId && exp.categoryId !== mappedCatId) {
-        exp.categoryId = mappedCatId;
-        changed = true;
-      }
-      if (r.cleanName && typeof r.cleanName === "string") {
-        const cleaned = r.cleanName.trim();
-        if (cleaned && exp.description !== cleaned) {
-          exp.description = cleaned;
-          changed = true;
-        }
-      }
-      if (changed) updatedExpenses++;
-    }
-
-    // Also register learned rules into state.categoryRules so future CSV imports hit local rules first (hybrid)
-    const existingKws = new Set(state.categoryRules.map(x => kanaFold(x.keyword)));
-    let maxPrio = Math.max(0, ...state.categoryRules.map(x => Number(x.priority) || 0));
-    for (const item of results) {
-      const mappedCatId = catNameToIdMap.get(item.category);
-      const kw = (item.cleanName || item.raw || "").trim();
-      if (mappedCatId && kw && kw.length >= 2 && !existingKws.has(kanaFold(kw))) {
-        maxPrio += 1;
-        state.categoryRules.push({
-          id: `rule_ai_${Date.now()}_${addedRules}`,
-          priority: maxPrio,
-          keyword: kw,
-          categoryId: mappedCatId
-        });
-        existingKws.add(kanaFold(kw));
-        addedRules++;
-      }
-    }
-  }
-
-  saveState(state);
-  refreshAll();
-  showToast(`AI判定完了: ${updatedExpenses}件を更新、${addedRules}件のルールを学習しました`);
-}
-
-document.getElementById("runAiHybridBtn").addEventListener("click", async () => {
-  try {
-    await runHybridAiClassification();
-  } catch (err) {
-    showToast(err.message || "AI判定中にエラーが発生しました");
-  }
-});
-
-document.getElementById("runAiFromListBtn").addEventListener("click", async () => {
-  try {
-    await runHybridAiClassification();
-  } catch (err) {
-    showToast(err.message || "AI判定中にエラーが発生しました");
-  }
-});
-
-const origRefreshAll = refreshAll;
-refreshAll = function() {
-  origRefreshAll();
-  initAiSettingsUi();
-  updateAiStatus();
-};
-initAiSettingsUi();
-updateAiStatus();
-
-
 let pendingDeleteCallback = null;
 
 function askDeleteConfirmation(message, onConfirm) {
@@ -2077,6 +882,71 @@ document.getElementById("confirmDeleteModal").addEventListener("click", (e) => {
   }
 });
 
+function getUnmatchedCatId() {
+  const found = state.categories.find(c => c.name === "未分類");
+  return found ? found.id : (state.categories[state.categories.length - 1]?.id || "cat_18");
+}
+
+function showToast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove("show"), 2600);
+}
+
+function kanaFold(str) {
+  if (!str) return "";
+  let s = String(str).normalize("NFKC").toUpperCase();
+  const smallKata = "ァィゥェォッャュョヮヵヶ";
+  const largeKata = "アイウエオツヤユヨワカケ";
+  const smallHira = "ぁぃぅぇぉっゃゅょゎ";
+  const largeHira = "あいうえおつやゆよわ";
+  let out = "";
+  for (const ch of s) {
+    let idx = smallKata.indexOf(ch);
+    if (idx >= 0) { out += largeKata[idx]; continue; }
+    idx = smallHira.indexOf(ch);
+    if (idx >= 0) { out += largeHira[idx]; continue; }
+    out += ch;
+  }
+  return out.replace(/[－ー―‐‑‒–—−]/g, "-").replace(/\s+/g, " ").trim();
+}
+
+function stripPaymentToolMarks(str) {
+  let s = String(str || "").normalize("NFKC").replace(/\s+/g, " ").trim();
+  s = s.replace(/^(?:AP|QP)\s*[\/／]\s*/i, "");
+  s = s.replace(/(?:\s*[\/／]\s*(?:iD|NFC|AP|QP))+[\s\/／]*$/i, "");
+  s = s.replace(/\s*[\/／]+\s*$/g, "").trim();
+  return s;
+}
+
+function normalizeStoreName(rawDesc) {
+  const norm = stripPaymentToolMarks(rawDesc);
+  const folded = kanaFold(norm);
+  const foldedRaw = kanaFold(rawDesc);
+  for (const a of state.storeAliases) {
+    if (a.pattern) {
+      const fp = kanaFold(a.pattern);
+      if (fp && (folded.includes(fp) || foldedRaw.includes(fp))) {
+        return a.canonicalName;
+      }
+    }
+  }
+  return norm;
+}
+
+function classifyDescription(desc) {
+  const folded = kanaFold(desc);
+  const sortedRules = [...state.categoryRules].sort((a, b) => a.priority - b.priority);
+  for (const r of sortedRules) {
+    if (r.keyword && folded.includes(kanaFold(r.keyword))) {
+      return r.categoryId;
+    }
+  }
+  return getUnmatchedCatId();
+}
+
 function getSubCategoriesForCat(catId) {
   const c = state.categories.find(x => x.id === catId);
   if (c && Array.isArray(c.subCategories) && c.subCategories.length > 0) {
@@ -2087,7 +957,7 @@ function getSubCategoriesForCat(catId) {
 
 function getDefaultSubCategory(catId, rawOrDesc) {
   const subs = getSubCategoriesForCat(catId);
-  const txt = kanaFold((rawOrDesc || ""));
+  const txt = kanaFold(rawOrDesc || "");
 
   if (catId === "cat_1") {
     if (["ファミペイ", "ファミリーマート", "ローソン", "セブン", "デイリーヤマザキ", "ミニストップ"].some(k => txt.includes(kanaFold(k)))) {
@@ -2183,7 +1053,7 @@ function getDefaultSubCategory(catId, rawOrDesc) {
     if (subs.includes("習い事・学費")) return "習い事・学費";
   }
   if (catId === "cat_10") {
-    if (["引越", "引っ越し", "引越し"].some(k => txt.includes(kanaFold(k)))) {
+    if (["引越", "引っ越し"].some(k => txt.includes(kanaFold(k)))) {
       if (subs.includes("引っ越し")) return "引っ越し";
     }
     if (subs.includes("家具・家電")) return "家具・家電";
@@ -2236,13 +1106,66 @@ function getDefaultSubCategory(catId, rawOrDesc) {
     }
     if (subs.includes("使途不明金・その他")) return "使途不明金・その他";
   }
-  return subs[0];
+  return subs[0] || "未分類";
 }
 
 function getExpSubCat(e) {
-  if (e && e.subCategory) return e.subCategory;
+  if (e && typeof e.subCategory === "string" && e.subCategory.trim() !== "") {
+    return e.subCategory;
+  }
   return getDefaultSubCategory(e ? e.categoryId : "cat_18", (e && (e.rawDescription || e.description)) || "");
 }
+
+function getCat(id) {
+  return state.categories.find(c => c.id === id) || { id: getUnmatchedCatId(), name: "未分類", costType: "変動費", subCategories: ["未分類"] };
+}
+function getPm(id) {
+  return state.paymentMethods.find(p => p.id === id) || { id: "pm_1", name: "不明", type: "" };
+}
+function fmtYen(n) {
+  return Number(n || 0).toLocaleString("ja-JP") + "円";
+}
+function escHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, m => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[m]));
+}
+
+// Navigation
+document.querySelectorAll("#mainNav button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#mainNav button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    refreshAll();
+  });
+});
+
+// Period & Chart toggles
+document.querySelectorAll("#periodModeSeg button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#periodModeSeg button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    periodMode = btn.dataset.mode;
+    document.getElementById("filterYear").style.display = periodMode === "all" ? "none" : "";
+    document.getElementById("filterMonth").style.display = periodMode === "month" ? "" : "none";
+    renderAnalytics();
+  });
+});
+
+document.querySelectorAll("#chartTypeSeg button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#chartTypeSeg button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    chartType = btn.dataset.ctype;
+    renderAnalytics();
+  });
+});
+
+document.getElementById("filterYear").addEventListener("change", renderAnalytics);
+document.getElementById("filterMonth").addEventListener("change", renderAnalytics);
+document.getElementById("excludeSpecial").addEventListener("change", renderAnalytics);
 
 function syncSubCategoryFilterOptions() {
   const fCat = document.getElementById("expFilterCat").value;
@@ -2276,32 +1199,275 @@ function syncCashSubCategoryOptions(preferredVal) {
   if (preferredVal && subs.includes(preferredVal)) sel.value = preferredVal;
 }
 
-document.getElementById("expFilterCat").addEventListener("change", () => {
-  syncSubCategoryFilterOptions();
-  renderExpensesTable();
-});
-document.getElementById("expFilterSubCat").addEventListener("change", renderExpensesTable);
+function populateSelectors() {
+  const years = [...new Set(state.expenses.map(e => e.date.slice(0, 4)))].sort().reverse();
+  if (years.length === 0) years.push("2026");
+  const fy = document.getElementById("filterYear");
+  const prevY = fy.value;
+  fy.innerHTML = years.map(y => `<option value="${y}">${y}年</option>`).join("");
+  if (years.includes(prevY)) fy.value = prevY;
+  else if (years.includes("2026")) fy.value = "2026";
 
-document.getElementById("cashCategory").addEventListener("change", () => {
-  syncCashSubCategoryOptions();
-});
+  const fm = document.getElementById("filterMonth");
+  const prevM = fm.value;
+  fm.innerHTML = Array.from({ length: 12 }, (_, i) => {
+    const m = String(i + 1).padStart(2, "0");
+    return `<option value="${m}">${i + 1}月</option>`;
+  }).join("");
+  if (prevM) {
+    fm.value = prevM;
+  } else {
+    const latest = [...state.expenses].sort((a, b) => b.date.localeCompare(a.date))[0];
+    fm.value = latest ? latest.date.slice(5, 7) : "11";
+  }
 
-// Override populateSelectors to include subCategory selectors
-const _origPopulateSelectors = populateSelectors;
-populateSelectors = function() {
-  _origPopulateSelectors();
+  const catOpts = state.categories.map(c => `<option value="${c.id}">${escHtml(c.name)}</option>`).join("");
+  const pmOpts = state.paymentMethods.map(p => `<option value="${p.id}">${escHtml(p.name)}</option>`).join("");
+
+  const efc = document.getElementById("expFilterCat");
+  const prevEfc = efc.value;
+  efc.innerHTML = `<option value="">すべて</option>` + catOpts;
+  efc.value = prevEfc;
+
   syncSubCategoryFilterOptions();
+
+  const efp = document.getElementById("expFilterPm");
+  const prevEfp = efp.value;
+  efp.innerHTML = `<option value="">すべて</option>` + pmOpts;
+  efp.value = prevEfp;
+
+  document.getElementById("cashCategory").innerHTML = catOpts;
   syncCashSubCategoryOptions(document.getElementById("cashSubCategory").value);
+  document.getElementById("newRuleCat").innerHTML = catOpts;
+
   const tCatSel = document.getElementById("targetCatForSub");
   if (tCatSel) {
     const prevT = tCatSel.value;
-    tCatSel.innerHTML = state.categories.map(c => `<option value="${c.id}">${escHtml(c.name)}</option>`).join("");
+    tCatSel.innerHTML = catOpts;
     if (prevT && state.categories.some(c => c.id === prevT)) tCatSel.value = prevT;
   }
-};
+}
 
-// Override getFilteredAndSortedExpenses to support subCategory filter & sort
-getFilteredAndSortedExpenses = function() {
+function buildSvgChart(items, total) {
+  if (items.length === 0 || total <= 0) {
+    return `<div style="padding:24px; text-align:center; color:var(--muted); font-size:0.86rem;">該当データがありません</div>`;
+  }
+  const positiveItems = items.filter(it => it.amount > 0);
+  const posTotal = positiveItems.reduce((s, it) => s + it.amount, 0);
+  if (posTotal <= 0) {
+    return `<div style="padding:24px; text-align:center; color:var(--muted); font-size:0.86rem;">正の支出データがありません</div>`;
+  }
+
+  if (chartType === "bar") {
+    const segs = positiveItems.map((it, idx) => {
+      const pct = (it.amount / posTotal) * 100;
+      const color = PALETTE[idx % PALETTE.length];
+      return `<div class="stacked-seg" style="width:${pct.toFixed(2)}%; background:${color};" title="${escHtml(it.name)}: ${fmtYen(it.amount)} (${pct.toFixed(1)}%)"></div>`;
+    }).join("");
+    const legends = positiveItems.slice(0, 10).map((it, idx) => {
+      const pct = (it.amount / posTotal) * 100;
+      const color = PALETTE[idx % PALETTE.length];
+      return `<li class="legend-item">
+        <span style="display:inline-flex; align-items:center;"><span class="legend-dot" style="background:${color};"></span>${escHtml(it.name)}</span>
+        <span><strong>${fmtYen(it.amount)}</strong> <span style="color:var(--muted);">(${pct.toFixed(1)}%)</span></span>
+      </li>`;
+    }).join("");
+    return `<div class="stacked-bar">${segs}</div><ul class="legend-list">${legends}</ul>`;
+  }
+
+  let cumAngle = -Math.PI / 2;
+  const cx = 105, cy = 105, r = 90, ir = 48;
+  const paths = positiveItems.map((it, idx) => {
+    const slice = (it.amount / posTotal) * Math.PI * 2;
+    const color = PALETTE[idx % PALETTE.length];
+    if (slice >= Math.PI * 1.999) {
+      return `<circle cx="${cx}" cy="${cy}" r="${(r + ir) / 2}" fill="none" stroke="${color}" stroke-width="${r - ir}" />`;
+    }
+    const x1 = cx + r * Math.cos(cumAngle);
+    const y1 = cy + r * Math.sin(cumAngle);
+    const ix1 = cx + ir * Math.cos(cumAngle);
+    const iy1 = cy + ir * Math.sin(cumAngle);
+    cumAngle += slice;
+    const x2 = cx + r * Math.cos(cumAngle);
+    const y2 = cy + r * Math.sin(cumAngle);
+    const ix2 = cx + ir * Math.cos(cumAngle);
+    const iy2 = cy + ir * Math.sin(cumAngle);
+    const largeArc = slice > Math.PI ? 1 : 0;
+    const d = `M ${ix1} ${iy1} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${ir} ${ir} 0 ${largeArc} 0 ${ix1} ${iy1} Z`;
+    return `<path d="${d}" fill="${color}" stroke="#ffffff" stroke-width="1.5"><title>${escHtml(it.name)}: ${fmtYen(it.amount)}</title></path>`;
+  }).join("");
+
+  const legends = positiveItems.slice(0, 8).map((it, idx) => {
+    const pct = (it.amount / posTotal) * 100;
+    const color = PALETTE[idx % PALETTE.length];
+    return `<li class="legend-item">
+      <span style="display:inline-flex; align-items:center;"><span class="legend-dot" style="background:${color};"></span>${escHtml(it.name)}</span>
+      <span><strong>${fmtYen(it.amount)}</strong> <span style="color:var(--muted);">(${pct.toFixed(1)}%)</span></span>
+    </li>`;
+  }).join("");
+
+  return `<div class="pie-container">
+    <svg width="210" height="210" viewBox="0 0 210 210">
+      ${paths}
+      <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="11" fill="#64748b">合計</text>
+      <text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f172a">${(posTotal / 10000).toFixed(1)}万円</text>
+    </svg>
+    <ul class="legend-list">${legends}</ul>
+  </div>`;
+}
+
+function renderAnalytics() {
+  const y = document.getElementById("filterYear").value;
+  const m = document.getElementById("filterMonth").value;
+  const exclSp = document.getElementById("excludeSpecial").checked;
+
+  const filtered = state.expenses.filter(e => {
+    if (exclSp) {
+      const cat = getCat(e.categoryId);
+      if (cat.name === "特別な支出" || cat.name === "その他") return false;
+    }
+    if (periodMode === "year") return e.date.startsWith(y + "-");
+    if (periodMode === "month") return e.date.startsWith(`${y}-${m}`);
+    return true;
+  });
+
+  const total = filtered.reduce((s, e) => s + e.amount, 0);
+  let varAmt = 0, fixAmt = 0, otherAmt = 0;
+  for (const e of filtered) {
+    const c = getCat(e.categoryId);
+    if (c.costType === "変動費") varAmt += e.amount;
+    else if (c.costType === "固定費") fixAmt += e.amount;
+    else otherAmt += e.amount;
+  }
+
+  const labelPeriod = periodMode === "month" ? `${y}年${Number(m)}月` : periodMode === "year" ? `${y}年` : "全期間";
+  document.getElementById("kpiGrid").innerHTML = `
+    <div class="kpi">
+      <div class="label">${labelPeriod} 総支出額</div>
+      <div class="value">${fmtYen(total)}</div>
+      <div class="meta">明細件数: ${filtered.length}件</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">変動費合計</div>
+      <div class="value">${fmtYen(varAmt)}</div>
+      <div class="meta">食費・日用品・交通費・趣味など</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">固定費合計</div>
+      <div class="value">${fmtYen(fixAmt)}</div>
+      <div class="meta">水道光熱費・通信費・教養教育など</div>
+    </div>
+    <div class="kpi neutral">
+      <div class="label">特別支出・税社会保障・振替</div>
+      <div class="value">${fmtYen(otherAmt)}</div>
+      <div class="meta">特別な支出・ふるさと納税・カード等</div>
+    </div>
+  `;
+
+  const catMap = new Map();
+  for (const e of filtered) {
+    const c = getCat(e.categoryId);
+    const prev = catMap.get(c.id) || { id: c.id, name: c.name, costType: c.costType, count: 0, amount: 0 };
+    prev.count += 1;
+    prev.amount += e.amount;
+    catMap.set(c.id, prev);
+  }
+  const catItems = [...catMap.values()].sort((a, b) => b.amount - a.amount);
+  document.getElementById("categoryChartArea").innerHTML = buildSvgChart(catItems, total);
+  document.querySelector("#categorySummaryTable tbody").innerHTML = catItems.map(it => {
+    const pct = total !== 0 ? (it.amount / total) * 100 : 0;
+    const badgeCls = it.costType === "固定費" ? "badge-fix" : it.costType === "変動費" ? "badge-var" : "badge-inv";
+    return `<tr>
+      <td><strong>${escHtml(it.name)}</strong></td>
+      <td><span class="badge ${badgeCls}">${escHtml(it.costType)}</span></td>
+      <td class="num">${it.count}</td>
+      <td class="num">${fmtYen(it.amount)}</td>
+      <td class="num">${pct.toFixed(1)}%</td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--muted);">データなし</td></tr>`;
+
+  const pmMap = new Map();
+  for (const e of filtered) {
+    const p = getPm(e.paymentMethodId);
+    const prev = pmMap.get(p.id) || { id: p.id, name: p.name, type: p.type, count: 0, amount: 0 };
+    prev.count += 1;
+    prev.amount += e.amount;
+    pmMap.set(p.id, prev);
+  }
+  const pmItems = [...pmMap.values()].sort((a, b) => b.amount - a.amount);
+  document.getElementById("paymentChartArea").innerHTML = buildSvgChart(pmItems, total);
+  document.querySelector("#paymentSummaryTable tbody").innerHTML = pmItems.map(it => {
+    const pct = total !== 0 ? (it.amount / total) * 100 : 0;
+    return `<tr>
+      <td><strong>${escHtml(it.name)}</strong></td>
+      <td><span class="badge">${escHtml(it.type)}</span></td>
+      <td class="num">${it.count}</td>
+      <td class="num">${fmtYen(it.amount)}</td>
+      <td class="num">${pct.toFixed(1)}%</td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--muted);">データなし</td></tr>`;
+
+  const subMap = new Map();
+  for (const e of filtered) {
+    const c = getCat(e.categoryId);
+    const s = getExpSubCat(e);
+    const key = `${c.id}__${s}`;
+    const prev = subMap.get(key) || { catName: c.name, subName: s, costType: c.costType, count: 0, amount: 0 };
+    prev.count += 1;
+    prev.amount += e.amount;
+    subMap.set(key, prev);
+  }
+  const subItems = [...subMap.values()].sort((a, b) => b.amount - a.amount);
+  const subTbody = document.querySelector("#subCategorySummaryTable tbody");
+  if (subTbody) {
+    subTbody.innerHTML = subItems.map(it => {
+      const pct = total !== 0 ? (it.amount / total) * 100 : 0;
+      const badgeCls = it.costType === "固定費" ? "badge-fix" : it.costType === "変動費" ? "badge-var" : "badge-inv";
+      return `<tr>
+        <td>${escHtml(it.catName)}</td>
+        <td><strong>${escHtml(it.subName)}</strong></td>
+        <td><span class="badge ${badgeCls}">${escHtml(it.costType)}</span></td>
+        <td class="num">${it.count}</td>
+        <td class="num">${fmtYen(it.amount)}</td>
+        <td class="num">${pct.toFixed(1)}%</td>
+      </tr>`;
+    }).join("") || `<tr><td colspan="6" style="text-align:center; color:var(--muted);">データなし</td></tr>`;
+  }
+
+  const merchMap = new Map();
+  for (const e of filtered) {
+    const key = e.description || "(未記入)";
+    const prev = merchMap.get(key) || { name: key, count: 0, amount: 0, catId: e.categoryId };
+    prev.count += 1;
+    prev.amount += e.amount;
+    merchMap.set(key, prev);
+  }
+  const merchItems = [...merchMap.values()].sort((a, b) => b.amount - a.amount).slice(0, 20);
+  const maxMerch = merchItems.length > 0 ? Math.max(...merchItems.map(x => Math.max(x.amount, 0)), 1) : 1;
+
+  document.getElementById("merchantBarArea").innerHTML = merchItems.slice(0, 10).map((it, i) => {
+    const w = Math.max(0, (it.amount / maxMerch) * 100);
+    return `<div class="hbar-row">
+      <div class="hbar-top">
+        <span><strong>${i + 1}.</strong> ${escHtml(it.name)} <span style="color:var(--muted); font-size:0.75rem;">(${it.count}回)</span></span>
+        <strong>${fmtYen(it.amount)}</strong>
+      </div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${w.toFixed(1)}%;"></div></div>
+    </div>`;
+  }).join("") || `<div style="color:var(--muted); font-size:0.86rem;">データなし</div>`;
+
+  document.querySelector("#merchantSummaryTable tbody").innerHTML = merchItems.map((it, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td>${escHtml(it.name)}</td>
+      <td><span class="badge">${escHtml(getCat(it.catId).name)}</span></td>
+      <td class="num">${it.count}</td>
+      <td class="num"><strong>${fmtYen(it.amount)}</strong></td>
+    </tr>
+  `).join("");
+}
+
+function getFilteredAndSortedExpenses() {
   const dateFrom = document.getElementById("expFilterDateFrom").value;
   const dateTo = document.getElementById("expFilterDateTo").value;
   const fCat = document.getElementById("expFilterCat").value;
@@ -2359,17 +1525,22 @@ getFilteredAndSortedExpenses = function() {
     }
     return cmp * dir;
   });
-};
+}
 
-const _origUpdateSortIndicators = updateSortIndicators;
-updateSortIndicators = function() {
-  _origUpdateSortIndicators();
-  const el = document.getElementById("sort-ind-subCategory");
-  if (el) el.textContent = sortField === "subCategory" ? (sortDir === "asc" ? "▲" : "▼") : "";
-};
+function updateSortIndicators() {
+  ["date", "category", "subCategory", "description", "paymentMethod", "amount"].forEach(f => {
+    const el = document.getElementById("sort-ind-" + f);
+    if (!el) return;
+    if (sortField === f) {
+      el.textContent = sortDir === "asc" ? "▲" : "▼";
+    } else {
+      el.textContent = "";
+    }
+  });
+}
 
-// Override renderExpensesTable to include subCategory column & inline subCategory selector
-renderExpensesTable = function() {
+// Strictly 8 <td> cells matching 8 <th> columns in #expensesTable
+function renderExpensesTable() {
   updateSortIndicators();
   const list = getFilteredAndSortedExpenses();
   const sum = list.reduce((s, e) => s + e.amount, 0);
@@ -2379,8 +1550,7 @@ renderExpensesTable = function() {
   const tbody = document.querySelector("#expensesTable tbody");
   tbody.innerHTML = list.map(e => {
     const isEditing = editingExpenseId === e.id;
-    const rawSub = (e && e.subCategory) ? String(e.subCategory) : "";
-    const curSub = rawSub ? rawSub : getDefaultSubCategory(e.categoryId, e.rawDescription || e.description);
+    const curSub = getExpSubCat(e);
     if (isEditing) {
       const catOptions = state.categories.map(c =>
         `<option value="${c.id}" ${c.id === e.categoryId ? "selected" : ""}>${escHtml(c.name)}</option>`
@@ -2430,10 +1600,22 @@ renderExpensesTable = function() {
       </td>
     </tr>`;
   }).join("");
-};
+}
 
-// Update subCategory options when inline category changes
-document.getElementById("expensesTable").addEventListener("change", (e) => {
+document.querySelectorAll("#expensesTable th.sortable").forEach(th => {
+  th.addEventListener("click", () => {
+    const f = th.dataset.sort;
+    if (sortField === f) {
+      sortDir = sortDir === "asc" ? "desc" : "asc";
+    } else {
+      sortField = f;
+      sortDir = (f === "date" || f === "amount") ? "desc" : "asc";
+    }
+    renderExpensesTable();
+  });
+});
+
+document.getElementById("expensesTable").addEventListener("change", e => {
   if (e.target.classList.contains("edit-cat")) {
     const tr = e.target.closest("tr[data-id]");
     if (!tr) return;
@@ -2444,8 +1626,44 @@ document.getElementById("expensesTable").addEventListener("change", (e) => {
   }
 });
 
-// Update saveInlineEdit to persist subCategory
-saveInlineEdit = function(tr, id) {
+document.getElementById("expensesTable").addEventListener("click", e => {
+  const tr = e.target.closest("tr[data-id]");
+  if (!tr) return;
+  const id = tr.dataset.id;
+
+  if (e.target.classList.contains("start-edit-btn")) {
+    editingExpenseId = id;
+    renderExpensesTable();
+  } else if (e.target.classList.contains("cancel-edit-btn")) {
+    editingExpenseId = null;
+    renderExpensesTable();
+  } else if (e.target.classList.contains("save-edit-btn")) {
+    saveInlineEdit(tr, id);
+  } else if (e.target.classList.contains("del-row-btn")) {
+    deleteExpenseById(id);
+  }
+});
+
+document.getElementById("expensesTable").addEventListener("dblclick", e => {
+  const tr = e.target.closest("tr[data-id]");
+  if (!tr || editingExpenseId === tr.dataset.id) return;
+  editingExpenseId = tr.dataset.id;
+  renderExpensesTable();
+});
+
+document.getElementById("expensesTable").addEventListener("keydown", e => {
+  const tr = e.target.closest("tr[data-id]");
+  if (!tr || editingExpenseId !== tr.dataset.id) return;
+  if (e.key === "Enter") {
+    e.preventDefault();
+    saveInlineEdit(tr, tr.dataset.id);
+  } else if (e.key === "Escape") {
+    editingExpenseId = null;
+    renderExpensesTable();
+  }
+});
+
+function saveInlineEdit(tr, id) {
   const target = state.expenses.find(x => x.id === id);
   if (!target) return;
   const newDate = tr.querySelector(".edit-date").value;
@@ -2470,23 +1688,38 @@ saveInlineEdit = function(tr, id) {
   saveState(state);
   refreshAll();
   showToast("明細を更新しました");
-};
+}
 
-// Re-bind sort headers for expensesTable (including subCategory)
-document.querySelectorAll("#expensesTable th.sortable").forEach(th => {
-  th.addEventListener("click", () => {
-    const f = th.dataset.sort;
-    if (sortField === f) {
-      sortDir = sortDir === "asc" ? "desc" : "asc";
-    } else {
-      sortField = f;
-      sortDir = (f === "date" || f === "amount") ? "desc" : "asc";
-    }
-    renderExpensesTable();
-  });
+["expFilterDateFrom", "expFilterDateTo", "expFilterAmtMin", "expFilterAmtMax"].forEach(id => {
+  document.getElementById(id).addEventListener("input", renderExpensesTable);
+  document.getElementById(id).addEventListener("change", renderExpensesTable);
+});
+document.getElementById("expSearch").addEventListener("input", renderExpensesTable);
+document.getElementById("expFilterPm").addEventListener("change", renderExpensesTable);
+document.getElementById("expFilterCat").addEventListener("change", () => {
+  syncSubCategoryFilterOptions();
+  renderExpensesTable();
+});
+document.getElementById("expFilterSubCat").addEventListener("change", renderExpensesTable);
+
+document.getElementById("clearExpFiltersBtn").addEventListener("click", () => {
+  document.getElementById("expFilterDateFrom").value = "";
+  document.getElementById("expFilterDateTo").value = "";
+  document.getElementById("expFilterCat").value = "";
+  syncSubCategoryFilterOptions();
+  document.getElementById("expFilterSubCat").value = "";
+  document.getElementById("expSearch").value = "";
+  document.getElementById("expFilterPm").value = "";
+  document.getElementById("expFilterAmtMin").value = "";
+  document.getElementById("expFilterAmtMax").value = "";
+  renderExpensesTable();
+  showToast("フィルタを解除しました");
 });
 
-// Override deletion actions to always show confirmation dialog first
+document.getElementById("selectAllExp").addEventListener("change", e => {
+  document.querySelectorAll(".exp-row-chk").forEach(chk => { chk.checked = e.target.checked; });
+});
+
 document.getElementById("bulkDeleteBtn").addEventListener("click", () => {
   const ids = [...document.querySelectorAll(".exp-row-chk:checked")].map(c => c.value);
   if (ids.length === 0) {
@@ -2503,9 +1736,9 @@ document.getElementById("bulkDeleteBtn").addEventListener("click", () => {
       showToast(`${ids.length}件の明細を削除しました`);
     }
   );
-}, true);
+});
 
-deleteExpenseById = function(id) {
+window.deleteExpenseById = function(id) {
   const target = state.expenses.find(e => e.id === id);
   const label = target ? `${target.date} / ${target.description} / ${fmtYen(target.amount)}` : id;
   askDeleteConfirmation(
@@ -2519,55 +1752,178 @@ deleteExpenseById = function(id) {
   );
 };
 
-document.getElementById("clearExpFiltersBtn").addEventListener("click", () => {
-  document.getElementById("expFilterDateFrom").value = "";
-  document.getElementById("expFilterDateTo").value = "";
-  document.getElementById("expFilterCat").value = "";
-  syncSubCategoryFilterOptions();
-  document.getElementById("expFilterSubCat").value = "";
-  document.getElementById("expSearch").value = "";
-  document.getElementById("expFilterPm").value = "";
-  document.getElementById("expFilterAmtMin").value = "";
-  document.getElementById("expFilterAmtMax").value = "";
-  renderExpensesTable();
-  showToast("フィルタを解除しました");
+// CSV Import
+const dropZone = document.getElementById("csvDropZone");
+const fileInput = document.getElementById("csvFileInput");
+dropZone.addEventListener("click", () => fileInput.click());
+dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("dragover"); });
+dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  if (e.dataTransfer.files.length) handleCsvFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener("change", e => {
+  if (e.target.files.length) handleCsvFiles(e.target.files);
 });
 
-// Update CSV preview & commit to include subCategory
-const _origHandleCsvFiles = handleCsvFiles;
-handleCsvFiles = async function(fileList) {
-  await _origHandleCsvFiles(fileList);
-  csvPreviewRows = csvPreviewRows.map(item => ({
-    ...item,
-    subCategory: item.subCategory || getDefaultSubCategory(item.categoryId, item.rawDescription)
-  }));
-  renderCsvPreview();
-};
-
-const _origRenderCsvPreview = renderCsvPreview;
-renderCsvPreview = async function() {
-  await _origRenderCsvPreview();
-  const skipDup = document.getElementById("skipDuplicatesChk").checked;
-  document.querySelectorAll("#csvPreviewTable tbody tr").forEach((tr, idx) => {
-    const r = csvPreviewRows[idx];
-    if (!r) return;
-    if (!r.subCategory) r.subCategory = getDefaultSubCategory(r.categoryId, r.rawDescription);
-    const catSel = tr.querySelector(".csv-prev-cat");
-    if (catSel && !tr.querySelector(".csv-prev-subcat")) {
-      const subs = getSubCategoriesForCat(r.categoryId);
-      const subOpts = subs.map(s => `<option value="${escHtml(s)}" ${s === r.subCategory ? "selected" : ""}>${escHtml(s)}</option>`).join("");
-      const td = document.createElement("td");
-      td.innerHTML = `<select class="csv-prev-subcat" data-idx="${idx}">${subOpts}</select>`;
-      catSel.parentElement.after(td);
+function parseCsvLine(line) {
+  const res = [];
+  let cur = "", inQuote = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQuote) {
+      if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+      else if (ch === '"') inQuote = false;
+      else cur += ch;
+    } else {
+      if (ch === '"') inQuote = true;
+      else if (ch === ",") { res.push(cur); cur = ""; }
+      else cur += ch;
     }
-  });
-};
+  }
+  res.push(cur);
+  return res;
+}
 
-document.getElementById("csvPreviewTable").addEventListener("change", (e) => {
+function parseCsvText(text) {
+  return text.split(/\r?\n/).filter(l => l.trim() !== "").map(parseCsvLine);
+}
+
+function normalizeDateStr(s) {
+  if (!s) return null;
+  const t = String(s).trim();
+  let m = t.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+  if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
+  m = t.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日$/);
+  if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
+  return null;
+}
+
+function parseAmountStr(s) {
+  if (s == null) return null;
+  const t = String(s).trim().replace(/[,円\s]/g, "");
+  if (!t || t === "-" || t === "－") return null;
+  const n = Number(t);
+  return Number.isFinite(n) ? Math.round(n) : null;
+}
+
+async function decodeCsvBuffer(buf) {
+  const utf8 = new TextDecoder("utf-8", { fatal: false }).decode(buf);
+  if (utf8.includes("ご利用") || utf8.includes("ショッピング") || utf8.includes("会員番号") || utf8.includes("取引日")) {
+    return utf8;
+  }
+  return new TextDecoder("shift_jis", { fatal: false }).decode(buf);
+}
+
+async function handleCsvFiles(fileList) {
+  const parsed = [];
+  for (const file of fileList) {
+    const buf = await file.arrayBuffer();
+    const text = await decodeCsvBuffer(buf);
+    const rows = parseCsvText(text);
+    if (rows.length < 2) continue;
+
+    const firstRowStr = rows[0].join(",");
+    const secondRowStr = rows[1] ? rows[1].join(",") : "";
+
+    if (firstRowStr.includes("エポスカード") || (rows[1] && rows[1][0] && rows[1][0].includes("種別"))) {
+      for (const r of rows.slice(2)) {
+        if (r[0] && r[0].trim() === "ショッピング") {
+          const d = normalizeDateStr(r[1]);
+          const amt = parseAmountStr(r[4]);
+          const rawDesc = (r[2] || "").trim();
+          if (d && amt !== null && rawDesc) {
+            parsed.push({ date: d, pmId: "pm_1", rawDescription: rawDesc, amount: amt, fileName: file.name });
+          }
+        }
+      }
+    } else if (firstRowStr.includes("会員番号") && secondRowStr.includes("対象カード")) {
+      const cardLabel = rows[1][1] || "";
+      const pmId = cardLabel.includes("ビックカメラ") ? "pm_4" : "pm_3";
+      for (const r of rows.slice(7)) {
+        const d = normalizeDateStr(r[0]);
+        const amt = parseAmountStr(r[2]);
+        const rawDesc = (r[1] || "").trim();
+        const payType = (r[5] || "").trim();
+        const instNum = (r[6] || "").trim();
+        if (payType.includes("２回払") && instNum === "2") continue;
+        if (d && amt !== null && rawDesc) {
+          parsed.push({ date: d, pmId, rawDescription: rawDesc, amount: amt, fileName: file.name });
+        }
+      }
+    } else if (firstRowStr.includes("利用日") && firstRowStr.includes("利用店名")) {
+      for (const r of rows.slice(1)) {
+        const d = normalizeDateStr(r[0]);
+        const rawDesc = (r[1] || "").trim();
+        const amt = parseAmountStr(r[2] || r[3]);
+        if (d && amt !== null && rawDesc) {
+          parsed.push({ date: d, pmId: "pm_5", rawDescription: rawDesc, amount: amt, fileName: file.name });
+        }
+      }
+    } else {
+      const pmId = file.name.toUpperCase().includes("ANAPAY") ? "pm_6" : "pm_2";
+      for (const r of rows) {
+        const d = normalizeDateStr(r[0]);
+        const rawDesc = (r[1] || "").trim();
+        const amt = parseAmountStr(r[2]);
+        if (d && amt !== null && rawDesc) {
+          parsed.push({ date: d, pmId, rawDescription: rawDesc, amount: amt, fileName: file.name });
+        }
+      }
+    }
+  }
+
+  const existingKeys = new Set(state.expenses.map(e => `${e.date}|${e.paymentMethodId}|${e.amount}|${e.rawDescription}`));
+  csvPreviewRows = parsed.map(item => {
+    const key = `${item.date}|${item.pmId}|${item.amount}|${item.rawDescription}`;
+    const catId = classifyDescription(item.rawDescription);
+    return {
+      ...item,
+      isDuplicate: existingKeys.has(key),
+      categoryId: catId,
+      subCategory: getDefaultSubCategory(catId, item.rawDescription),
+      description: normalizeStoreName(item.rawDescription)
+    };
+  });
+
+  renderCsvPreview();
+}
+
+function renderCsvPreview() {
+  const sec = document.getElementById("csvPreviewSection");
+  sec.style.display = "block";
+  const skipDup = document.getElementById("skipDuplicatesChk").checked;
+  const activeRows = skipDup ? csvPreviewRows.filter(r => !r.isDuplicate) : csvPreviewRows;
+  document.getElementById("csvPreviewCount").textContent =
+    `解析結果: 全${csvPreviewRows.length}件（新規登録対象: ${activeRows.length}件 / 重複: ${csvPreviewRows.filter(r => r.isDuplicate).length}件）`;
+
+  document.querySelector("#csvPreviewTable tbody").innerHTML = csvPreviewRows.slice(0, 150).map((r, idx) => {
+    const catOpts = state.categories.map(c =>
+      `<option value="${c.id}" ${c.id === r.categoryId ? "selected" : ""}>${escHtml(c.name)}</option>`
+    ).join("");
+    const subs = getSubCategoriesForCat(r.categoryId);
+    const subOpts = subs.map(s =>
+      `<option value="${escHtml(s)}" ${s === r.subCategory ? "selected" : ""}>${escHtml(s)}</option>`
+    ).join("");
+    return `<tr style="${r.isDuplicate && skipDup ? "opacity:0.45;" : ""}">
+      <td>${r.isDuplicate ? `<span class="badge badge-unmatched">重複</span>` : `<span class="badge badge-fix">新規</span>`}</td>
+      <td>${r.date}</td>
+      <td>${escHtml(getPm(r.pmId).name)}</td>
+      <td><select class="csv-prev-cat" data-idx="${idx}">${catOpts}</select></td>
+      <td><select class="csv-prev-subcat" data-idx="${idx}">${subOpts}</select></td>
+      <td>${escHtml(r.description)}</td>
+      <td class="num">${fmtYen(r.amount)}</td>
+    </tr>`;
+  }).join("");
+}
+
+document.getElementById("skipDuplicatesChk").addEventListener("change", renderCsvPreview);
+document.getElementById("csvPreviewTable").addEventListener("change", e => {
+  const idx = Number(e.target.dataset.idx);
+  const row = csvPreviewRows[idx];
+  if (!row) return;
   if (e.target.classList.contains("csv-prev-cat")) {
-    const idx = Number(e.target.dataset.idx);
-    const row = csvPreviewRows[idx];
-    if (!row) return;
     row.categoryId = e.target.value;
     const subs = getSubCategoriesForCat(row.categoryId);
     row.subCategory = subs[0] || "";
@@ -2576,93 +1932,462 @@ document.getElementById("csvPreviewTable").addEventListener("change", (e) => {
       subSel.innerHTML = subs.map(s => `<option value="${escHtml(s)}" ${s === row.subCategory ? "selected" : ""}>${escHtml(s)}</option>`).join("");
     }
   } else if (e.target.classList.contains("csv-prev-subcat")) {
-    const idx = Number(e.target.dataset.idx);
-    if (csvPreviewRows[idx]) csvPreviewRows[idx].subCategory = e.target.value;
+    row.subCategory = e.target.value;
   }
 });
 
-// Cash form submit with subCategory
-document.getElementById("cashForm").addEventListener("submit", (e) => {
-  const subEl = document.getElementById("cashSubCategory");
-  if (subEl && !subEl.value) {
-    subEl.value = getDefaultSubCategory(document.getElementById("cashCategory").value, document.getElementById("cashDesc").value);
+document.getElementById("commitCsvBtn").addEventListener("click", () => {
+  const skipDup = document.getElementById("skipDuplicatesChk").checked;
+  const toAdd = skipDup ? csvPreviewRows.filter(r => !r.isDuplicate) : csvPreviewRows;
+  if (toAdd.length === 0) {
+    showToast("新規登録する明細がありません");
+    return;
   }
-  setTimeout(() => {
-    const last = state.expenses[state.expenses.length - 1];
-    if (last && last.sourceType === "現金手入力" && !last.subCategory) {
-      last.subCategory = subEl ? subEl.value : getDefaultSubCategory(last.categoryId, last.description);
-      saveState(state);
-      renderExpensesTable();
-      renderAnalytics();
-    }
-  }, 0);
-});
-
-// Add subCategory handler in Masters tab
-const addSubForm = document.getElementById("addSubCategoryForm");
-if (addSubForm) {
-  addSubForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const catId = document.getElementById("targetCatForSub").value;
-    const subName = document.getElementById("newSubCatName").value.trim();
-    if (!catId || !subName) return;
-    const cat = state.categories.find(c => c.id === catId);
-    if (!cat) return;
-    if (!Array.isArray(cat.subCategories)) cat.subCategories = [];
-    if (!cat.subCategories.includes(subName)) {
-      cat.subCategories.push(subName);
-    }
-    saveState(state);
-    document.getElementById("newSubCatName").value = "";
-    refreshAll();
-    showToast(`「${cat.name}」に中分類「${subName}」を追加しました`);
+  const now = Date.now();
+  toAdd.forEach((r, i) => {
+    state.expenses.push({
+      id: `exp_csv_${now}_${i}`,
+      date: r.date,
+      categoryId: r.categoryId,
+      subCategory: r.subCategory || getDefaultSubCategory(r.categoryId, r.rawDescription),
+      paymentMethodId: r.pmId,
+      description: r.description,
+      rawDescription: r.rawDescription,
+      amount: r.amount,
+      sourceType: `CSV (${r.fileName})`
+    });
   });
+  saveState(state);
+  csvPreviewRows = [];
+  document.getElementById("csvPreviewSection").style.display = "none";
+  refreshAll();
+  showToast(`${toAdd.length}件の明細を取り込みました`);
+});
+
+// Cash Input
+document.getElementById("cashDate").value = new Date().toISOString().slice(0, 10);
+document.getElementById("cashDesc").addEventListener("input", e => {
+  const unmatchedId = getUnmatchedCatId();
+  const suggested = classifyDescription(e.target.value);
+  if (suggested !== unmatchedId) {
+    document.getElementById("cashCategory").value = suggested;
+    syncCashSubCategoryOptions(getDefaultSubCategory(suggested, e.target.value));
+  }
+});
+document.getElementById("cashCategory").addEventListener("change", () => {
+  syncCashSubCategoryOptions();
+});
+
+document.getElementById("cashForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const date = document.getElementById("cashDate").value;
+  const desc = document.getElementById("cashDesc").value.trim();
+  const categoryId = document.getElementById("cashCategory").value;
+  const subCategory = document.getElementById("cashSubCategory").value || getDefaultSubCategory(categoryId, desc);
+  const amount = Number(document.getElementById("cashAmount").value);
+  if (!date || !desc || !amount) return;
+
+  state.expenses.push({
+    id: `exp_cash_${Date.now()}`,
+    date,
+    categoryId,
+    subCategory,
+    paymentMethodId: "pm_7",
+    description: desc,
+    rawDescription: desc,
+    amount,
+    sourceType: "現金手入力"
+  });
+  saveState(state);
+  document.getElementById("cashDesc").value = "";
+  document.getElementById("cashAmount").value = "";
+  refreshAll();
+  showToast("現金支出を登録しました");
+});
+
+function renderCashHistory() {
+  const cashList = state.expenses
+    .filter(e => e.paymentMethodId === "pm_7")
+    .sort((a, b) => b.date.localeCompare(a.date));
+  document.querySelector("#cashHistoryTable tbody").innerHTML = cashList.map(e => `
+    <tr>
+      <td>${e.date}</td>
+      <td><span class="badge">${escHtml(getCat(e.categoryId).name)}</span></td>
+      <td>${escHtml(e.description)}</td>
+      <td class="num"><strong>${fmtYen(e.amount)}</strong></td>
+      <td><button class="btn btn-danger btn-sm" onclick="deleteExpenseById('${e.id}')">削除</button></td>
+    </tr>
+  `).join("") || `<tr><td colspan="5" style="text-align:center; color:var(--muted);">現金支出の履歴はまだありません</td></tr>`;
 }
 
-// Render subCategory summary table & export subCategory in CSV
-const _origRenderAnalytics = renderAnalytics;
-renderAnalytics = function() {
-  _origRenderAnalytics();
-  const y = document.getElementById("filterYear").value;
-  const m = document.getElementById("filterMonth").value;
-  const exclSp = document.getElementById("excludeSpecial").checked;
-  const filtered = state.expenses.filter(e => {
-    if (exclSp) {
-      const cat = getCat(e.categoryId);
-      if (cat.name === "特別な支出" || cat.name === "その他") return false;
-    }
-    if (periodMode === "year") return e.date.startsWith(y + "-");
-    if (periodMode === "month") return e.date.startsWith(`${y}-${m}`);
-    return true;
-  });
-  const total = filtered.reduce((s, e) => s + e.amount, 0);
-  const subMap = new Map();
-  for (const e of filtered) {
-    const c = getCat(e.categoryId);
-    const s = getExpSubCat(e);
-    const key = `${c.id}__${s}`;
-    const prev = subMap.get(key) || { catName: c.name, subName: s, costType: c.costType, count: 0, amount: 0 };
-    prev.count += 1;
-    prev.amount += e.amount;
-    subMap.set(key, prev);
-  }
-  const subItems = [...subMap.values()].sort((a, b) => b.amount - a.amount);
-  const tbody = document.querySelector("#subCategorySummaryTable tbody");
-  if (tbody) {
-    tbody.innerHTML = subItems.map(it => {
-      const pct = total !== 0 ? (it.amount / total) * 100 : 0;
-      const badgeCls = it.costType === "固定費" ? "badge-fix" : it.costType === "変動費" ? "badge-var" : "badge-inv";
-      return `<tr>
-        <td>${escHtml(it.catName)}</td>
-        <td><strong>${escHtml(it.subName)}</strong></td>
-        <td><span class="badge ${badgeCls}">${escHtml(it.costType)}</span></td>
-        <td class="num">${it.count}</td>
-        <td class="num">${fmtYen(it.amount)}</td>
-        <td class="num">${pct.toFixed(1)}%</td>
-      </tr>`;
-    }).join("") || `<tr><td colspan="6" style="text-align:center; color:var(--muted);">データなし</td></tr>`;
-  }
+// Masters & Rules
+function renderMasters() {
+  document.querySelector("#categoriesMasterTable tbody").innerHTML = state.categories.map(c => {
+    const cnt = state.expenses.filter(e => e.categoryId === c.id).length;
+    const subTxt = Array.isArray(c.subCategories) ? c.subCategories.join("、") : "";
+    return `<tr><td><strong>${escHtml(c.name)}</strong><div style="font-size:0.72rem; color:var(--muted);">${escHtml(subTxt)}</div></td><td>${escHtml(c.costType)}</td><td class="num">${cnt}</td></tr>`;
+  }).join("");
+
+  document.querySelector("#pmMasterTable tbody").innerHTML = state.paymentMethods.map(p => {
+    const cnt = state.expenses.filter(e => e.paymentMethodId === p.id).length;
+    return `<tr><td><strong>${escHtml(p.name)}</strong></td><td>${escHtml(p.type)}</td><td class="num">${cnt}</td></tr>`;
+  }).join("");
+
+  const sortedRules = [...state.categoryRules].sort((a, b) => a.priority - b.priority);
+  document.querySelector("#rulesMasterTable tbody").innerHTML = sortedRules.map(r => `
+    <tr>
+      <td>${r.priority}</td>
+      <td><code>${escHtml(r.keyword)}</code></td>
+      <td><span class="badge">${escHtml(getCat(r.categoryId).name)}</span></td>
+      <td><button class="btn btn-danger btn-sm" onclick="deleteRule('${r.id}')">削除</button></td>
+    </tr>
+  `).join("");
+
+  document.querySelector("#aliasesMasterTable tbody").innerHTML = state.storeAliases.map(a => `
+    <tr>
+      <td><code>${escHtml(a.pattern)}</code></td>
+      <td><strong>${escHtml(a.canonicalName)}</strong></td>
+      <td><button class="btn btn-danger btn-sm" onclick="deleteAlias('${a.id}')">削除</button></td>
+    </tr>
+  `).join("");
+}
+
+window.deleteRule = function(id) {
+  state.categoryRules = state.categoryRules.filter(r => r.id !== id);
+  saveState(state);
+  renderMasters();
+  showToast("ルールを削除しました");
 };
+
+window.deleteAlias = function(id) {
+  state.storeAliases = state.storeAliases.filter(a => a.id !== id);
+  saveState(state);
+  renderMasters();
+  showToast("名寄せルールを削除しました");
+};
+
+document.getElementById("addCategoryForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = document.getElementById("newCatName").value.trim();
+  const costType = document.getElementById("newCatType").value;
+  if (!name) return;
+  state.categories.push({ id: `cat_${Date.now()}`, name, costType, subCategories: [name] });
+  saveState(state);
+  document.getElementById("newCatName").value = "";
+  refreshAll();
+  showToast(`支出科目「${name}」を追加しました`);
+});
+
+document.getElementById("addSubCategoryForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const catId = document.getElementById("targetCatForSub").value;
+  const subName = document.getElementById("newSubCatName").value.trim();
+  if (!catId || !subName) return;
+  const cat = state.categories.find(c => c.id === catId);
+  if (!cat) return;
+  if (!Array.isArray(cat.subCategories)) cat.subCategories = [];
+  if (!cat.subCategories.includes(subName)) {
+    cat.subCategories.push(subName);
+  }
+  saveState(state);
+  document.getElementById("newSubCatName").value = "";
+  refreshAll();
+  showToast(`「${cat.name}」に中分類「${subName}」を追加しました`);
+});
+
+document.getElementById("addPmForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = document.getElementById("newPmName").value.trim();
+  const type = document.getElementById("newPmType").value;
+  if (!name) return;
+  state.paymentMethods.push({ id: `pm_${Date.now()}`, name, type });
+  saveState(state);
+  document.getElementById("newPmName").value = "";
+  refreshAll();
+  showToast(`支払手段「${name}」を追加しました`);
+});
+
+document.getElementById("addRuleForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const priority = Number(document.getElementById("newRulePrio").value) || 50;
+  const keyword = document.getElementById("newRuleKw").value.trim();
+  const categoryId = document.getElementById("newRuleCat").value;
+  if (!keyword) return;
+  state.categoryRules.push({ id: `rule_${Date.now()}`, priority, keyword, categoryId });
+  saveState(state);
+  document.getElementById("newRuleKw").value = "";
+  renderMasters();
+  showToast("自動判定ルールを追加しました");
+});
+
+document.getElementById("addAliasForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const pattern = document.getElementById("newAliasPattern").value.trim();
+  const canonicalName = document.getElementById("newAliasCanonical").value.trim();
+  if (!pattern || !canonicalName) return;
+  state.storeAliases.push({ id: `alias_${Date.now()}`, pattern, canonicalName });
+  saveState(state);
+  document.getElementById("newAliasPattern").value = "";
+  document.getElementById("newAliasCanonical").value = "";
+  renderMasters();
+  showToast("店名名寄せルールを追加しました");
+});
+
+document.getElementById("reapplyRulesBtn").addEventListener("click", () => {
+  const unmatchedId = getUnmatchedCatId();
+  let updated = 0;
+  for (const e of state.expenses) {
+    if (e.categoryId === unmatchedId) {
+      const nextCat = classifyDescription(e.rawDescription || e.description);
+      if (nextCat !== unmatchedId) {
+        e.categoryId = nextCat;
+        e.subCategory = getDefaultSubCategory(nextCat, e.rawDescription || e.description);
+        updated++;
+      }
+    }
+  }
+  saveState(state);
+  refreshAll();
+  showToast(`${updated}件の未分類明細に科目を適用しました`);
+});
+
+document.getElementById("reapplyAliasesBtn").addEventListener("click", () => {
+  let updated = 0;
+  for (const e of state.expenses) {
+    const nextName = normalizeStoreName(e.rawDescription || e.description);
+    if (nextName !== e.description) {
+      e.description = nextName;
+      updated++;
+    }
+  }
+  saveState(state);
+  refreshAll();
+  showToast(`${updated}件の明細に店名名寄せを適用しました`);
+});
+
+document.getElementById("exportJsonBtn").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `kakeibo_backup_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+});
+
+document.getElementById("exportCsvBtn").addEventListener("click", () => {
+  const header = ["支出日", "支出科目", "中分類", "費用区分", "摘要", "元表記", "支払手段", "金額", "取込元"];
+  const rows = state.expenses.map(e => {
+    const c = getCat(e.categoryId);
+    const p = getPm(e.paymentMethodId);
+    return [e.date, c.name, getExpSubCat(e), c.costType, e.description, e.rawDescription, p.name, e.amount, e.sourceType]
+      .map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(",");
+  });
+  const bom = "\uFEFF";
+  const blob = new Blob([bom + [header.join(","), ...rows].join("\r\n")], { type: "text/csv;charset=utf-8;" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `kakeibo_expenses_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+});
+
+document.getElementById("importJsonInput").addEventListener("change", async e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    if (parsed && Array.isArray(parsed.expenses)) {
+      state = parsed;
+      saveState(state);
+      refreshAll();
+      showToast("JSONバックアップから復元しました");
+    }
+  } catch (err) {
+    showToast("JSONの読み込みに失敗しました");
+  }
+});
+
+document.getElementById("resetSeedBtn").addEventListener("click", () => {
+  askDeleteConfirmation(
+    "現在の明細・編集内容を破棄し、初期マスタ状態（明細0件）へ戻しますか？",
+    () => {
+      state = cloneSeed();
+      saveState(state);
+      refreshAll();
+      showToast("初期マスタ状態へリセット（明細0件）しました");
+    }
+  );
+});
+
+function getApiKey() {
+  return (localStorage.getItem(API_KEY_STORAGE) || "").trim();
+}
+function getApiModel() {
+  return localStorage.getItem(API_MODEL_STORAGE) || "gemini-3.5-flash-lite";
+}
+
+function initAiSettingsUi() {
+  const keyInput = document.getElementById("geminiApiKeyInput");
+  const modelSel = document.getElementById("geminiModelSelect");
+  if (keyInput) keyInput.value = getApiKey();
+  if (modelSel) modelSel.value = getApiModel();
+}
+
+document.getElementById("saveApiKeyBtn").addEventListener("click", () => {
+  const k = document.getElementById("geminiApiKeyInput").value.trim();
+  const m = document.getElementById("geminiModelSelect").value;
+  localStorage.setItem(API_KEY_STORAGE, k);
+  localStorage.setItem(API_MODEL_STORAGE, m);
+  showToast("API設定をブラウザ内に保存しました");
+  updateAiStatus();
+});
+
+function updateAiStatus() {
+  const el = document.getElementById("aiStatusText");
+  if (!el) return;
+  const unmatchedId = getUnmatchedCatId();
+  const unmatchedCnt = state.expenses.filter(e => e.categoryId === unmatchedId).length;
+  const hasKey = Boolean(getApiKey());
+  el.textContent = `APIキー設定: ${hasKey ? "設定済み（端末内保存）" : "未設定"} / 現在の「未分類」明細: ${unmatchedCnt}件`;
+}
+
+async function runHybridAiClassification() {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    showToast("先に「マスタ・ルール管理」でGemini APIキーを入力・保存してください");
+    return;
+  }
+  const unmatchedId = getUnmatchedCatId();
+  const targets = state.expenses.filter(e => e.categoryId === unmatchedId);
+  if (targets.length === 0) {
+    showToast("AI判定が必要な「未分類」明細はありません");
+    return;
+  }
+
+  const model = getApiModel();
+  const validCatNames = state.categories.filter(c => c.name !== "未分類").map(c => c.name);
+  const catNameToIdMap = new Map(state.categories.map(c => [c.name, c.id]));
+
+  const uniqueInputs = [...new Map(
+    targets.map(t => [t.rawDescription || t.description, { raw: t.rawDescription || t.description, current: t.description }])
+  ).values()];
+
+  const batchSize = 60;
+  let updatedExpenses = 0;
+  let addedRules = 0;
+
+  showToast(`AI判定を実行中（対象 ${uniqueInputs.length} 摘要 / ${targets.length} 件）...`);
+
+  for (let i = 0; i < uniqueInputs.length; i += batchSize) {
+    const chunk = uniqueInputs.slice(i, i + batchSize);
+    const prompt = [
+      "あなたは日本の家計簿データの分類・表記ゆれ統一アシスタントです。",
+      "以下の各明細（raw）について、最も適切な支出科目（category）と、全角/半角・カナ表記ゆれ・決済プレフィックス（ＡＰ／、ＱＰ／、／ＮＦＣ、／ｉＤなど）を整理した簡潔な店名・内容（cleanName）を返してください。",
+      "使用可能な支出科目一覧: " + validCatNames.join("、"),
+      "出力は必ず次のJSON配列形式のみとしてください:",
+      '[{"raw":"元の文字列","category":"科目名","cleanName":"統一後名称"}]',
+      "対象データ:",
+      JSON.stringify(chunk.map(x => x.raw))
+    ].join("\n");
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
+      })
+    });
+
+    if (!resp.ok) {
+      const errText = await resp.text();
+      throw new Error(`APIエラー (${resp.status}): ${errText.slice(0, 180)}`);
+    }
+
+    const data = await resp.json();
+    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const jsonMatch = rawText.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) {
+      throw new Error("AI応答からJSON配列を抽出できませんでした");
+    }
+    const results = JSON.parse(jsonMatch[0]);
+    const resMap = new Map();
+    for (const item of results) {
+      if (item && typeof item.raw === "string") {
+        resMap.set(item.raw, item);
+      }
+    }
+
+    for (const exp of targets) {
+      const key = exp.rawDescription || exp.description;
+      const r = resMap.get(key);
+      if (!r) continue;
+      const mappedCatId = catNameToIdMap.get(r.category);
+      let changed = false;
+      if (mappedCatId && mappedCatId !== unmatchedId && exp.categoryId !== mappedCatId) {
+        exp.categoryId = mappedCatId;
+        exp.subCategory = getDefaultSubCategory(mappedCatId, exp.rawDescription || exp.description);
+        changed = true;
+      }
+      if (r.cleanName && typeof r.cleanName === "string") {
+        const cleaned = stripPaymentToolMarks(r.cleanName);
+        if (cleaned && exp.description !== cleaned) {
+          exp.description = cleaned;
+          changed = true;
+        }
+      }
+      if (changed) updatedExpenses++;
+    }
+
+    const existingKws = new Set(state.categoryRules.map(x => kanaFold(x.keyword)));
+    let maxPrio = Math.max(0, ...state.categoryRules.map(x => Number(x.priority) || 0));
+    for (const item of results) {
+      const mappedCatId = catNameToIdMap.get(item.category);
+      const kw = (item.cleanName || item.raw || "").trim();
+      if (mappedCatId && kw && kw.length >= 2 && !existingKws.has(kanaFold(kw))) {
+        maxPrio += 1;
+        state.categoryRules.push({
+          id: `rule_ai_${Date.now()}_${addedRules}`,
+          priority: maxPrio,
+          keyword: kw,
+          categoryId: mappedCatId
+        });
+        existingKws.add(kanaFold(kw));
+        addedRules++;
+      }
+    }
+  }
+
+  saveState(state);
+  refreshAll();
+  showToast(`AI判定完了: ${updatedExpenses}件を更新、${addedRules}件のルールを学習しました`);
+}
+
+document.getElementById("runAiHybridBtn").addEventListener("click", async () => {
+  try {
+    await runHybridAiClassification();
+  } catch (err) {
+    showToast(err.message || "AI判定中にエラーが発生しました");
+  }
+});
+
+document.getElementById("runAiFromListBtn").addEventListener("click", async () => {
+  try {
+    await runHybridAiClassification();
+  } catch (err) {
+    showToast(err.message || "AI判定中にエラーが発生しました");
+  }
+});
+
+function refreshAll() {
+  populateSelectors();
+  renderAnalytics();
+  renderExpensesTable();
+  renderCashHistory();
+  renderMasters();
+  initAiSettingsUi();
+  updateAiStatus();
+}
 
 refreshAll();
 </script>
